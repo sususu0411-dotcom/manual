@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TJ 業務ロードマップ（中級編）</title>
+  <style>
+    :root {
+      --bg: #f2f4f7;
+      --card: #ffffff;
+      --text: #243042;
+      --muted: #667085;
+      --line: #d0d5dd;
+      --blue: #2f6fed;
+      --blue-soft: #eef4ff;
+      --green: #16a34a;
+      --green-soft: #eefcf3;
+      --orange: #f59e0b;
+      --orange-soft: #fff7e8;
+      --red: #dc2626;
+      --red-soft: #fff1f1;
+      --purple: #7c3aed;
+      --purple-soft: #f5f0ff;
+      --shadow: 0 8px 24px rgba(15, 23, 42, .06);
+      --shadow-strong: 0 10px 26px rgba(15, 23, 42, .10);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 14px 48px;
+    }
+
+    .hero,
+    .panel,
+    .step,
+    .faq-item,
+    .quick-card,
+    .level-card,
+    .mini-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 24px 18px 18px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .company-logo {
+      width: 240px;
+      max-width: 80%;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.9rem;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: .98rem;
+      margin-top: 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: .85rem;
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .tab-menu {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      border: 2px solid #9aa4b2;
+      background: #fff;
+      border-radius: 12px;
+      padding: 11px 20px;
+      font-size: .96rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 0 rgba(15, 23, 42, .18);
+      transition: .18s ease;
+    }
+
+    .tab-button:hover {
+      transform: translateY(-1px);
+      border-color: #64748b;
+    }
+
+    .tab-button.active {
+      background: var(--blue);
+      border-color: #1d4ed8;
+      color: #fff;
+      box-shadow: 0 3px 0 #1d4ed8;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .panel {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .panel p {
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .quick-card {
+      border: 2px solid #d6deea;
+      padding: 14px;
+    }
+
+    .quick-title {
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-size: .95rem;
+    }
+
+    .quick-buttons,
+    .mini-links,
+    .manual-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .jump-btn,
+    .manual-btn,
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: .92rem;
+      font-weight: 900;
+      border: 3px solid transparent;
+      cursor: pointer;
+      box-shadow: 0 3px 0 rgba(15, 23, 42, .18);
+      transition: .18s ease;
+    }
+
+    .jump-btn:hover,
+    .manual-btn:hover,
+    .link-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 0 rgba(15, 23, 42, .2);
+    }
+
+    .jump-btn {
+      background: var(--blue-soft);
+      border-color: #5b8def;
+      color: #103a8a;
+    }
+
+    .manual-btn {
+      background: #f8fafc;
+      border-color: #7f8ea3;
+      color: #243042;
+    }
+
+    .link-btn {
+      background: var(--green-soft);
+      border-color: #39a865;
+      color: #166534;
+    }
+
+    .level-card {
+      padding: 10px 14px;
+      border: 3px solid #b8c2d1;
+      min-height: 84px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      transition: .18s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 3px 0 rgba(15, 23, 42, .16);
+    }
+
+    .level-card::after {
+      content: "▶";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .95rem;
+      color: #365ea8;
+      font-weight: 900;
+    }
+
+    .level-card:hover {
+      transform: translateY(-2px);
+      border-color: #4f83eb;
+      box-shadow: 0 6px 0 rgba(15, 23, 42, .2);
+      background: #f8fbff;
+    }
+
+    .level-label {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+      font-weight: 800;
+    }
+
+    .level-title {
+      font-size: .98rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .level-note {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* チェックボックス */
+    .level-check-wrap {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .level-check {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+
+    .level-card.cleared {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .level-card.cleared .level-check-wrap {
+      color: var(--green);
+    }
+
+    .mini-card {
+      padding: 14px;
+      border: 1px solid #e8ecf2;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .tip {
+      border: 2px solid #7ad39c;
+      border-left: 8px solid var(--green);
+      background: #fbfffc;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-strong);
+      font-size: .95rem;
+      text-align: left;
+    }
+
+    .tip strong:first-child {
+      display: inline-block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .step {
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-left: 8px solid var(--blue);
+    }
+
+    .step[data-tone="green"] {
+      border-left-color: var(--green);
+    }
+
+    .step[data-tone="orange"] {
+      border-left-color: var(--orange);
+    }
+
+    .step[data-tone="red"] {
+      border-left-color: var(--red);
+    }
+
+    .step[data-tone="purple"] {
+      border-left-color: var(--purple);
+    }
+
+    .step[data-tone="blue"] {
+      border-left-color: var(--blue);
+    }
+
+    .step-header {
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .step-name {
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid #d8dee8;
+      padding: 4px 10px;
+      font-size: .8rem;
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .step-arrow {
+      font-size: 1.1rem;
+      font-weight: 900;
+      transition: transform .2s ease;
+      color: #344054;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .step.open .step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .step-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+      padding: 0 16px;
+    }
+
+    .step.open .step-body {
+      padding: 0 16px 16px;
+    }
+
+    .step-body-inner {
+      font-size: .95rem;
+    }
+
+    .step-body-inner ul {
+      margin: 6px 0 0 1.2em;
+      padding-left: 0;
+    }
+
+    .step-body-inner li {
+      margin-bottom: 5px;
+    }
+
+    .branch-section {
+      border: 2px solid #d7dde8;
+      border-radius: 12px;
+      background: #fcfdff;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    .branch-root {
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .branch-node {
+      border-left: 4px solid #b8c7e6;
+      margin-bottom: 8px;
+      padding-left: 10px;
+    }
+
+    .branch-header {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      cursor: pointer;
+      font-size: .95rem;
+      padding: 4px 0;
+    }
+
+    .branch-label {
+      border: 1px solid #b9c4d3;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: .84rem;
+      font-weight: 800;
+      background: #fff;
+    }
+
+    .branch-arrow {
+      transition: transform .2s ease;
+      font-weight: 900;
+      color: #103a8a;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .branch-node.open>.branch-header .branch-arrow {
+      transform: rotate(90deg);
+    }
+
+    .branch-children {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+      margin-left: 6px;
+    }
+
+    .branch-body {
+      font-size: .92rem;
+      padding: 4px 0 6px;
+    }
+
+    .note {
+      margin-top: 8px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid #e4e7ec;
+      font-size: .92rem;
+    }
+
+    .faq-item {
+      margin-bottom: 10px;
+      overflow: hidden;
+      border: 1px solid #e4e7ec;
+    }
+
+    .faq-q {
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 14px 16px;
+      font-size: .95rem;
+      font-weight: 900;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+      padding: 0 16px;
+      color: #475467;
+      font-size: .92rem;
+    }
+
+    .faq-item.open .faq-a {
+      padding: 0 16px 14px;
+    }
+
+    .faq-item.open .step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .level-card {
+        min-height: 88px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 16px 10px 40px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .step-header {
+        padding: 12px 14px;
+      }
+
+      .hero {
+        padding: 18px 14px 14px;
+      }
+    }
+
+    .back-wrap {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border: 2px solid #2f6fed;
+      border-radius: 12px;
+      background: #f8fbff;
+      color: #103a8a;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, .08);
+    }
+
+    .back-button:hover {
+      background: #2f6fed;
+      color: #fff;
+    }
+
+    .tab-note {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="hero"><img src="../images(all)/TJ_logo/tj.jpg" alt="タキザワ住販株式会社" class="company-logo" />
+      <h1>TJ 業務ロードマップ（中級編）</h1>
+      <p class="tab-note">別タブで開く専用ページです。ページ最下部から初級編に戻れます。</p>
+    </div>
+    <div class="tab-content active">
+      <div class="panel">
+        <h2>中級編</h2>
+        <p class="muted">現場での対応が必要な業務です。まず全体の流れを見てから、個別の手順へ進みます。</p>
+      </div>
+      <div class="grid grid-3" style="margin-bottom:16px;">
+        <a href="#" class="level-card" data-open-step="mid-step1" data-level-id="mid-lv1">
+          <label class="level-check-wrap" onclick="event.stopPropagation()">
+            <input type="checkbox" class="level-check" data-level-id="mid-lv1"> クリア
+          </label>
+          <div class="level-label">ステップ1（中級）</div>
+          <div class="level-title">駐車場の契約</div>
+          <div class="level-note">申込用紙記入・免許証のコピー・車検証のコピー</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="mid-step2" data-level-id="mid-lv2">
+          <label class="level-check-wrap" onclick="event.stopPropagation()">
+            <input type="checkbox" class="level-check" data-level-id="mid-lv2"> クリア
+          </label>
+          <div class="level-label">ステップ2（中級）</div>
+          <div class="level-title">居住用物件の申込受付</div>
+          <div class="level-note">イタンジで申込受付or申込用紙・保証委託申込書・身分証のコピー</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="mid-step3" data-level-id="mid-lv3">
+          <label class="level-check-wrap" onclick="event.stopPropagation()">
+            <input type="checkbox" class="level-check" data-level-id="mid-lv3"> クリア
+          </label>
+          <div class="level-label">ステップ3（中級）</div>
+          <div class="level-title">事業用物件の申込受付</div>
+          <div class="level-note">申込用紙（個人or法人）・保証委託申込書・謄本（法人の場合）</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="mid-step4" data-level-id="mid-lv4">
+          <label class="level-check-wrap" onclick="event.stopPropagation()">
+            <input type="checkbox" class="level-check" data-level-id="mid-lv4"> クリア
+          </label>
+          <div class="level-label">ステップ4（中級）</div>
+          <div class="level-title">内見</div>
+          <div class="level-note">内見予約・鍵の所在・持ち物</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="mid-step5" data-level-id="mid-lv5">
+          <label class="level-check-wrap" onclick="event.stopPropagation()">
+            <input type="checkbox" class="level-check" data-level-id="mid-lv5"> クリア
+          </label>
+          <div class="level-label">ステップ5（中級）</div>
+          <div class="level-title">退去立会</div>
+          <div class="level-note">時間・物件・号室確認</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="mid-step6" data-level-id="mid-lv6">
+          <label class="level-check-wrap" onclick="event.stopPropagation()">
+            <input type="checkbox" class="level-check" data-level-id="mid-lv6"> クリア
+          </label>
+          <div class="level-label">ステップ6（中級）</div>
+          <div class="level-title">原状回復工事依頼</div>
+          <div class="level-note">写真・見積・工事依頼の流れ</div>
+        </a>
+      </div>
+
+      <!-- ステップ1：駐車場の契約 -->
+      <div class="step open" id="mid-step1" data-tone="blue">
+        <button class="step-header">
+          <div class="step-title-wrap"><span class="step-name">ステップ1（中級）：駐車場の申込受付から契約までの流れ</span><span
+              class="step-badge">申込受付～契約</span></div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              ①駐車場<strong>（個人or法人）</strong>の申込受付用紙を用意して、申込者に記入してもらう<br>
+              ②駐車場の<strong>契約進行表</strong>に沿って記入していく<br>
+              ③<strong>大家に申込が入ったことを連絡</strong>する<br>
+              ④<strong>免許証・車検証・謄本（法人の場合）</strong>のコピーをとる<br>
+              ⑤楽々賃貸で<strong>賃貸清算書</strong>を作成する<br>
+              ⑥楽々賃貸で<strong>駐車場契約書</strong>を作成する<br>
+              ⑦手の空いてる人に<strong>清算書の確認</strong>をしてもらう<br>
+              ⑧契約時費用を振込してもらい、<strong>振込確認</strong>する<br>
+              ⑨<strong>A3で２部</strong>プリントアウトして申込者に<strong>署名捺印</strong>してもらう<br>
+              ⑩<strong>申込用紙記入、入金確認、契約書署名捺印（借主）、免許証・車検証のコピー</strong>すべて揃ったら担当者へまわす
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ステップ2：居住用物件の申込受付 -->
+      <div class="step" id="mid-step2" data-tone="green">
+        <button class="step-header">
+          <div class="step-title-wrap"><span class="step-name">ステップ2（中級）：居住用物件の申込受付</span><span
+              class="step-badge">申込対応</span></div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <li>イタンジで申込受付できる場合は、イタンジから申込を進める</li>
+              <li>紙の場合は<strong>申込用紙</strong>に記入してもらう</li>
+              <li><strong>保証委託申込書</strong>を用意して記入してもらう</li>
+              <li><strong>身分証（免許証・マイナンバーカード等）</strong>のコピーをとる</li>
+              <li>すべて揃ったら担当者へまわす</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ステップ3：事業用物件の申込受付 -->
+      <div class="step" id="mid-step3" data-tone="orange">
+        <button class="step-header">
+          <div class="step-title-wrap"><span class="step-name">ステップ3（中級）：事業用物件の申込受付</span><span
+              class="step-badge">申込対応</span></div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <li><strong>個人 or 法人</strong>かを確認し、対応する申込用紙を用意する</li>
+              <li><strong>保証委託申込書</strong>を用意して記入してもらう</li>
+              <li>法人の場合は<strong>謄本（登記事項証明書）</strong>のコピーをとる</li>
+              <li>個人の場合は<strong>身分証</strong>のコピーをとる</li>
+              <li>すべて揃ったら担当者へまわす</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ステップ4：内見 -->
+      <div class="step" id="mid-step4" data-tone="blue">
+        <button class="step-header">
+          <div class="step-title-wrap"><span class="step-name">ステップ4（中級）：内見</span><span class="step-badge">現地対応</span>
+          </div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <li>内見の<strong>日時・物件名・号室</strong>を確認する</li>
+              <li><strong>鍵の所在</strong>（キーボックス・管理会社・弊社管理など）を確認する</li>
+              <li>持ち物を確認する（<strong>鍵・名刺・メジャー・スリッパ</strong>など）</li>
+              <li>内見後はお客様の反応・ご意見をメモして担当者へ共有する</li>
+              <li>鍵は必ず<strong>元の場所へ返却</strong>する</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ステップ5：退去立会 -->
+      <div class="step" id="mid-step5" data-tone="orange">
+        <button class="step-header">
+          <div class="step-title-wrap"><span class="step-name">ステップ5（中級）：退去立会</span><span class="step-badge">確認業務</span>
+          </div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <strong>【事前確認】</strong><br>
+              物件名・号室・立会日時・契約者名を確認する<br>
+              契約書の特約を確認する<br>
+              持ち物を確認する<br>
+              <strong>【ポイント①】チェックポイント</strong><br>
+              借主と一緒に確認（一緒に確認する）<br>
+              その場で説明する（後出しNG）<br>
+              写真・動画を必ず撮る<br>
+              <strong>👉 「その場で合意できるところは全部潰す</strong><br>
+              <strong> ■ 壁・クロス </strong><br>
+              <li>ヤニ → 借主負担</li>
+              <li>画鋲程度 → 通常損耗</li>
+              <li>クギ穴 → 借主負担</li>
+              <li>大きな穴 → 借主負担</li>
+              <li>日焼け → 経年劣化</li>
+              <strong>👉 判断軸「普通に生活してたらつくか？」</strong><br>
+              <strong> ■ 床（フローリング・CF）</strong> <br>
+              <li>家具跡 → 通常損耗</li>
+              <li>水シミ・腐食 → 借主</li>
+              <li>焦げ → 借主</li>
+              <strong> ■ 水回り（キッチン・風呂・トイレ）</strong><br>
+              <li>軽い汚れ → クリーニング範囲</li>
+              <li>カビ放置 → 借主負担</li>
+              <li>尿石ガチガチ → 借主</li>
+              <strong>👉 「清掃で落ちるか」じゃなく「放置したか」がポイント</strong><br>
+              <strong> ■ 設備（エアコン・給湯器など）</strong><br>
+              <li>壊れてる → 原則貸主</li>
+              <li>使い方ミス → 借主</li>
+              <strong>【ポイント②】経年劣化 vs 過失の判断</strong><br>
+              <li>「これは通常損耗なので大丈夫です」</li>
+              <li>「これは借主様のご負担になります」</li>
+              <li>「ここはオーナーと相談します」</li>
+              <li>その場でチェックシート記入</li>
+              「こちらの汚れ（傷）は、通常使用を超えていると判断されるため、借主様のご負担対象となる可能性があります。」<br>
+              「こちらについては判断が分かれる部分になりますので、オーナー様とも確認のうえ、後日正式にご案内させていただきます。」<br>
+              「現時点では正確な金額は出せないため、お見積りを作成のうえ、後日ご説明させていただきます。」<br>
+              <li>断定しすぎないで、可能性があるに留めるのもOk</li>
+              <strong>【立会終了】</strong><br>
+              <li>鍵の返却（スペアキーも全て）</li>
+              <li>戸締りをする</li>
+              <li>ブレーカーを落とす</li>
+              <li>施錠する</li>
+              <li>原状回復が必要な箇所は社内共有し、見積依頼につなぐ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ステップ6：原状回復工事依頼 -->
+      <div class="step" id="mid-step6" data-tone="purple">
+        <button class="step-header">
+          <div class="step-title-wrap"><span class="step-name">ステップ6（中級）：原状回復工事依頼</span><span
+              class="step-badge">工事連携</span></div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <li>写真・現況・修繕内容を整理する</li>
+              <li>必要に応じて見積を取り、工事項目を明確にする</li>
+              <li>依頼先・工期・費用の目安を確認する</li>
+              <li>工事完了後は完了報告と書類整理を行う</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer">TJ 不動産部ロードマップ / 中級編</div>
+    <div class="back-wrap" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px;">
+      <a href="tj_shokyu_fixed.html" class="back-button">◀ 初級編に戻る</a>
+      <a href="tj_jokyu_manual.html" class="back-button">上級編へ ▶</a>
+    </div>
+  </div>
+
+  <script>
+    function openStep(step) { const body = step.querySelector('.step-body'); if (!body) return; step.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    function closeStep(step) { const body = step.querySelector('.step-body'); if (!body) return; step.classList.remove('open'); body.style.maxHeight = 0; }
+    document.querySelectorAll('.step').forEach(step => { const h = step.querySelector('.step-header'); const b = step.querySelector('.step-body'); if (!h || !b) return; h.addEventListener('click', () => { step.classList.contains('open') ? closeStep(step) : openStep(step) }); if (step.classList.contains('open')) b.style.maxHeight = b.scrollHeight + 'px'; });
+    document.querySelectorAll('.branch-node').forEach(node => { const h = node.querySelector('.branch-header'); const c = node.querySelector('.branch-children'); if (!h || !c) return; c.style.maxHeight = 0; h.addEventListener('click', () => { const isOpen = node.classList.contains('open'); if (isOpen) { node.classList.remove('open'); c.style.maxHeight = 0; } else { node.classList.add('open'); c.style.maxHeight = c.scrollHeight + 'px'; } }); });
+    document.querySelectorAll('[data-open-step]').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); const t = document.getElementById(btn.dataset.openStep); if (!t) return; if (t.classList.contains('step')) openStep(t); setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120); }));
+  </script>
+
+  <script>
+    // チェック状態の保存・復元
+    const checks = document.querySelectorAll('.level-check');
+    checks.forEach(cb => {
+      const id = cb.dataset.levelId;
+      const card = cb.closest('.level-card');
+      if (localStorage.getItem('level-' + id) === '1') {
+        cb.checked = true;
+        card.classList.add('cleared');
+      }
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          localStorage.setItem('level-' + id, '1');
+          card.classList.add('cleared');
+        } else {
+          localStorage.removeItem('level-' + id);
+          card.classList.remove('cleared');
+        }
+      });
+    });
+  </script>
+
+  <a href="#"
+    style="position:fixed;bottom:24px;right:24px;background:#2f6fed;color:#fff;font-weight:900;font-size:1rem;padding:12px 18px;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(15,23,42,.25);z-index:9999;">▲
+    トップへ戻る</a>
+</body>
+
+</html>

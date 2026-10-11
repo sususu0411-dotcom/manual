@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TJ 分岐マニュアル（電話対応・来客対応）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", "Meiryo", sans-serif;
+            margin: 0;
+            background: #f2f2f2;
+            color: #333;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 12px 32px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 4px 0 8px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin: 16px 0 6px;
+        }
+
+        .desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 14px;
+        }
+
+        /* 分岐ツリー */
+        .branch-section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 14px 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+        }
+
+        .branch-root {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .branch-node {
+            border-left: 2px solid #ccc;
+            margin-left: 12px;
+            padding-left: 12px;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .branch-node::before {
+            content: "";
+            position: absolute;
+            left: -2px;
+            top: -10px;
+            width: 14px;
+            height: 10px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .branch-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .branch-label {
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid #888;
+            background: #fafafa;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .branch-arrow {
+            font-size: 0.9rem;
+            transition: transform .2s;
+        }
+
+        .branch-node.open>.branch-header .branch-arrow {
+            transform: rotate(90deg);
+        }
+
+        .branch-children {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .25s ease-out;
+            margin-left: 8px;
+        }
+
+        .branch-body {
+            font-size: 0.9rem;
+            padding: 6px 0 4px;
+            line-height: 1.6;
+        }
+
+        .branch-body ul {
+            margin: 0 0 4px 1.2em;
+            padding-left: 0;
+        }
+
+        .branch-body li {
+            margin-bottom: 2px;
+        }
+
+        .note {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        @media(max-width:600px) {
+            .page {
+                padding: 14px 8px 24px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <h1>TJ 分岐マニュアル</h1>
+        <p class="desc">
+            電話対応と来客対応を、「どういう相手か」で枝分かれさせたマニュアルです。<br>
+            グレーのラベルをクリックすると、下に説明が開きます。
+        </p>
+
+        <!-- ここから分岐マニュアル -->
+
+        <!-- 📞 電話対応 -->
+        <div class="branch-section">
+            <div class="branch-root">📞 電話が鳴ったら</div>
+
+            <!-- 必要な電話 -->
+            <div class="branch-node">
+                <div class="branch-header">
+                    <span class="branch-arrow">▶</span>
+                    <span class="branch-label">必要な電話</span>
+                    <span>（物件確認／社長宛／従業員宛）</span>
+                </div>
+                <div class="branch-children">
+                    <div class="branch-body">
+                        <ul>
+                            <li><strong>物件確認の電話</strong><br>
+                                不動産業者から「〇〇荘の空室状況を教えてください」など。<br>
+                                → 物件名・号室・入居状況を楽々賃貸で確認して伝える。
+                            </li>
+                            <li><strong>社長あての電話</strong><br>
+                                まず <strong>要件</strong> と <strong>電話番号</strong> を聞く。<br>
+                                ・在席 → 「少々お待ちください」と伝えてから取り次ぐ。<br>
+                                ・不在 → 「折り返しご連絡します」と伝え、メモを残す。
+                            </li>
+                            <li><strong>従業員あての電話</strong><br>
+                                基本はそのまま取り次いでOK。<br>
+                                不在の場合は、要件と電話番号を聞き、伝言メモを書いておく。
+                            </li>
+                        </ul>
+                        <p class="note">※ 内容に迷うときは「社長に確認してから折り返します」で一旦切ってOK。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 営業電話 -->
+            <div class="branch-node">
+                <div class="branch-header">
+                    <span class="branch-arrow">▶</span>
+                    <span class="branch-label">営業電話</span>
+                    <span>（サービス・広告などの売り込み）</span>
+                </div>
+                <div class="branch-children">
+                    <div class="branch-body">
+                        <ul>
+                            <li><strong>まず営業かどうかを確認</strong><br>
+                                「大変恐れ入りますが、ご用件はご営業でしょうか？」と聞いてみる。
+                            </li>
+                            <li><strong>お断りの基本フレーズ</strong><br>
+                                ・「申し訳ございませんが、現在そのサービスを利用する予定はございません。」<br>
+                                ・「恐れ入りますが、ご案内は不要でございます。」
+                            </li>
+                            <li><strong>しつこい場合</strong><br>
+                                ・「申し訳ございませんが、これ以上お話を伺うことが難しいため、失礼いたします。」<br>
+                                と伝えて、会話を終えてよい。
+                            </li>
+                        </ul>
+                        <p class="note">※ 判断に迷う場合は、社長に聞いてから折り返す形にしてOK。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🚪 来客対応 -->
+        <div class="branch-section">
+            <div class="branch-root">🚪 人が来たら</div>
+
+            <!-- お客さん -->
+            <div class="branch-node">
+                <div class="branch-header">
+                    <span class="branch-arrow">▶</span>
+                    <span class="branch-label">お客さん</span>
+                    <span>（部屋探し・店舗探し・売却／購入）</span>
+                </div>
+                <div class="branch-children">
+                    <div class="branch-body">
+                        <ul>
+                            <li><strong>基本のひと言</strong><br>
+                                「いらっしゃいませ。ご用件をお伺いしてもよろしいでしょうか？」
+                            </li>
+                            <li><strong>部屋・店舗・売買の相談</strong><br>
+                                ・席にご案内して、アンケート用紙（希望条件シート）に記入してもらう。<br>
+                                ・お茶出し（慣れてきたら対応）<br>
+                                ・記入が終わったら、担当者を呼ぶ。
+                            </li>
+                        </ul>
+                        <p class="note">※ 条件の聞き取りまではできなくてOK。「ご記入をお願いします」で十分。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 借主 -->
+            <div class="branch-node">
+                <div class="branch-header">
+                    <span class="branch-arrow">▶</span>
+                    <span class="branch-label">借主</span>
+                    <span>（入居者さん）</span>
+                </div>
+                <div class="branch-children">
+                    <div class="branch-body">
+                        <ul>
+                            <li><strong>家賃支払いの場合</strong><br>
+                                ・「いらっしゃいませ。お家賃のお支払いですね。」<br>
+                                ・手帳と現金を預かり、手帳に角印を押す。<br>
+                                ・物件名・号室・名前・金額をメモ（出納帳用）。
+                            </li>
+                            <li><strong>相談・クレームの場合</strong><br>
+                                ・「どういったご用件でしょうか？」と落ち着いて聞く。<br>
+                                ・内容をそのままメモし、担当者につなぐ。
+                            </li>
+                        </ul>
+                        <p class="note">※ 判断は担当者に任せてOK。「詳しい者に代わります」でつなぐ。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 大家 -->
+            <div class="branch-node">
+                <div class="branch-header">
+                    <span class="branch-arrow">▶</span>
+                    <span class="branch-label">大家</span>
+                    <span>（オーナーさん）</span>
+                </div>
+                <div class="branch-children">
+                    <div class="branch-body">
+                        <ul>
+                            <li><strong>基本の対応</strong><br>
+                                ・「いつもお世話になっております。」<br>
+                                ・物件名とお名前を確認する。
+                            </li>
+                            <li><strong>書類や精算書の受け渡し</strong><br>
+                                ・「お渡しボックス」や決まった場所に保管してある書類をお渡しする。<br>
+                                ・何か依頼がある場合はメモし、社長／担当者に共有。
+                            </li>
+                        </ul>
+                        <p class="note">※ オーナーさんの話はさえぎらず、いったん最後まで聞いてからメモする。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 営業 -->
+            <div class="branch-node">
+                <div class="branch-header">
+                    <span class="branch-arrow">▶</span>
+                    <span class="branch-label">営業</span>
+                    <span>（業者さん・サービスの売り込み）</span>
+                </div>
+                <div class="branch-children">
+                    <div class="branch-body">
+                        <ul>
+                            <li><strong>資料だけ受け取るパターン</strong><br>
+                                ・「資料をお預かりして、担当者にお渡しします。」<br>
+                                ・もらったパンフレットは決まった置き場へ。
+                            </li>
+                            <li><strong>買取業者の場合</strong><br>
+                                ・窓際の買取業者向け資料があれば、それを渡す。
+                            </li>
+                            <li><strong>仲介業者の場合</strong><br>
+                                ・タイムカード付近などにある業者向け資料を渡す。
+                            </li>
+                        </ul>
+                        <p class="note">※ 長く話し込む必要はない。「資料お預かり」で切ってOK。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ここまで分岐マニュアル -->
+
+    </div>
+
+    <script>
+        // 分岐ノードの開閉処理
+        const branchNodes = document.querySelectorAll('.branch-node');
+
+        branchNodes.forEach(node => {
+            const header = node.querySelector('.branch-header');
+            const children = node.querySelector('.branch-children');
+            if (!header || !children) return;
+
+            header.addEventListener('click', () => {
+                node.classList.toggle('open');
+                if (node.classList.contains('open')) {
+                    children.style.maxHeight = children.scrollHeight + "px";
+                } else {
+                    children.style.maxHeight = 0;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

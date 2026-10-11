@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ハトサポ操作マニュアル | TJ 不動産部</title>
+  <style>
+    :root {
+      --bg: #f2f4f7;
+      --card: #ffffff;
+      --text: #243042;
+      --muted: #667085;
+      --line: #d0d5dd;
+      --blue: #2f6fed;
+      --blue-soft: #eef4ff;
+      --green: #16a34a;
+      --green-soft: #eefcf3;
+      --orange: #f59e0b;
+      --orange-soft: #fff7e8;
+      --red: #dc2626;
+      --red-soft: #fff1f1;
+      --purple: #7c3aed;
+      --purple-soft: #f5f0ff;
+      --shadow: 0 8px 24px rgba(15, 23, 42, .06);
+      --shadow-strong: 0 10px 26px rgba(15, 23, 42, .10);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 14px 60px;
+    }
+
+    .hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 20px 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .company-logo {
+      width: 200px;
+      max-width: 70%;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.7rem;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 4px;
+    }
+
+    /* クイックナビ */
+    .quick-nav {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-soft);
+      border: 2px solid #5b8def;
+      color: #103a8a;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: .88rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+
+    /* ステップ */
+    .step {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-left: 8px solid var(--blue);
+    }
+
+    .step[data-tone="green"] {
+      border-left-color: var(--green);
+    }
+
+    .step[data-tone="orange"] {
+      border-left-color: var(--orange);
+    }
+
+    .step[data-tone="red"] {
+      border-left-color: var(--red);
+    }
+
+    .step[data-tone="purple"] {
+      border-left-color: var(--purple);
+    }
+
+    .step-header {
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .step-name {
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid #d8dee8;
+      padding: 4px 10px;
+      font-size: .8rem;
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .step-arrow {
+      font-size: 1.1rem;
+      font-weight: 900;
+      transition: transform .2s ease;
+      color: #344054;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .step.open .step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .step-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+      padding: 0 16px;
+    }
+
+    .step.open .step-body {
+      padding: 0 16px 16px;
+    }
+
+    .step-body-inner {
+      font-size: .95rem;
+    }
+
+    /* 操作手順リスト */
+    .op-list {
+      list-style: none;
+      margin: 10px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .op-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: #f8fafc;
+      border: 1px solid #e4e7ec;
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    .op-num {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 900;
+      font-size: .82rem;
+      border-radius: 50%;
+      min-width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .step[data-tone="green"] .op-num {
+      background: var(--green);
+    }
+
+    .step[data-tone="orange"] .op-num {
+      background: var(--orange);
+    }
+
+    .step[data-tone="red"] .op-num {
+      background: var(--red);
+    }
+
+    .step[data-tone="purple"] .op-num {
+      background: var(--purple);
+    }
+
+    .op-text {
+      flex: 1;
+      font-size: .93rem;
+      line-height: 1.6;
+    }
+
+    .op-text strong {
+      color: #103a8a;
+    }
+
+    /* 画像プレースホルダー */
+    .img-placeholder {
+      width: 100%;
+      background: #eef1f6;
+      border: 2px dashed #b8c2d1;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .88rem;
+      gap: 6px;
+    }
+
+    .img-placeholder .img-icon {
+      font-size: 2rem;
+    }
+
+    /* ポイントボックス */
+    .point-box {
+      border: 2px solid #7ad39c;
+      border-left: 8px solid var(--green);
+      background: #fbfffc;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      font-size: .92rem;
+    }
+
+    .point-box.orange {
+      border-color: #fcd27a;
+      border-left-color: var(--orange);
+      background: var(--orange-soft);
+    }
+
+    .point-box.red {
+      border-color: #fca5a5;
+      border-left-color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .point-box strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* 用語ミニ表 */
+    .term-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: .9rem;
+    }
+
+    .term-table th {
+      background: #eef1f6;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 800;
+      border: 1px solid #d0d5dd;
+    }
+
+    .term-table td {
+      padding: 8px 12px;
+      border: 1px solid #e4e7ec;
+      vertical-align: top;
+    }
+
+    .term-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* 戻るボタン */
+    .back-wrap {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 22px;
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      background: #f0f5ff;
+      color: #103a8a;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: .95rem;
+      transition: .18s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.35rem;
+      }
+
+      .op-num {
+        min-width: 22px;
+        height: 22px;
+        font-size: .75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- ヒーロー -->
+    <div class="hero">
+      <img src="../images(all)/TJ_logo/tj.jpg" alt="タキザワ住販株式会社" class="company-logo" />
+      <h1>🏠 ハトサポ 操作マニュアル</h1>
+      <p class="hero-sub">ハトサポの基本操作をまとめています</p>
+    </div>
+
+    <!-- クイックナビ -->
+    <div class="quick-nav">
+      <a class="nav-btn" href="#sec-login">① ログイン</a>
+      <a class="nav-btn" href="#sec-search">② 契約書・重説（web版）</a>
+      <a class="nav-btn" href="#sec-detail">③ 契約書・重説（タウンロード版）</a>
+      <a class="nav-btn" href="#sec-register">④ 資料ダウンロード</a>
+      <a class="nav-btn" href="#sec-update">⑤ </a>
+      <a class="nav-btn" href="#sec-contract">⑥ </a>
+    </div>
+
+    <!-- ① ログイン -->
+    <div class="step open" id="sec-login" data-tone="blue">
+      <button class="step-header">
+        <div class="step-title-wrap">
+          <span class="step-name">① ログイン</span>
+          <span class="step-badge">最初にやること</span>
+        </div>
+        <span class="step-arrow">▶</span>
+      </button>
+      <div class="step-body">
+        <div class="step-body-inner">
+          <ul class="op-list">
+            <li><span class="op-num">1</span><span class="op-text">レインズのサイトにアクセスする</span></li>
+            <li><span class="op-num">2</span><span
+                class="op-text"><strong>「会員証番号」</strong>と<strong>「パスワード」</strong>を入力してログインする</span></li>
+            <li><span class="op-num">3</span><span class="op-text">ログイン後、トップページが表示されることを確認する</span></li>
+          </ul>
+          <div class="img-placeholder">
+            <span class="img-icon">🖼️</span>
+            <span>ログイン画面のスクリーンショットをここに貼る</span>
+          </div>
+          <div class="point-box orange" style="margin-top:12px;">
+            <strong>⚠️ パスワードがわからない場合</strong>
+            担当者または責任者に確認してください。勝手にリセットしないこと。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 物件検索 -->
+    <div class="step" id="sec-search" data-tone="green">
+      <button class="step-header">
+        <div class="step-title-wrap">
+          <span class="step-name">② 物件検索</span>
+          <span class="step-badge">空室確認・物件探し</span>
+        </div>
+        <span class="step-arrow">▶</span>
+      </button>
+      <div class="step-body">
+        <div class="step-body-inner">
+          <ul class="op-list">
+            <li><span class="op-num">1</span><span class="op-text">トップメニューから<strong>「物件検索」</strong>をクリックする</span></li>
+            <li><span class="op-num">2</span><span class="op-text">種別を選択する（<strong>居住用 / 事業用 / 土地</strong> など）</span>
+            </li>
+            <li><span class="op-num">3</span><span class="op-text">エリア・沿線・駅・賃料・間取りなどの条件を入力する</span></li>
+            <li><span class="op-num">4</span><span class="op-text"><strong>「検索」</strong>ボタンを押して結果一覧を確認する</span></li>
+            <li><span class="op-num">5</span><span class="op-text">一覧から物件名をクリックして詳細を確認する</span></li>
+          </ul>
+          <div class="img-placeholder">
+            <span class="img-icon">🖼️</span>
+            <span>物件検索画面のスクリーンショットをここに貼る</span>
+          </div>
+          <div class="point-box">
+            <strong>💡 検索のコツ</strong>
+            条件を絞りすぎると結果が出ないことがある。まずエリアだけで広めに検索して絞っていくのがおすすめ。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 物件詳細確認 -->
+    <div class="step" id="sec-detail" data-tone="green">
+      <button class="step-header">
+        <div class="step-title-wrap">
+          <span class="step-name">③ 物件詳細の確認</span>
+          <span class="step-badge">図面・条件チェック</span>
+        </div>
+        <span class="step-arrow">▶</span>
+      </button>
+      <div class="step-body">
+        <div class="step-body-inner">
+          <ul class="op-list">
+            <li><span class="op-num">1</span><span class="op-text">詳細画面で<strong>賃料・管理費・敷金・礼金・間取り・面積</strong>を確認する</span>
+            </li>
+            <li><span class="op-num">2</span><span class="op-text"><strong>「図面」</strong>ボタンがあればクリックして間取り図・写真を確認する</span>
+            </li>
+            <li><span class="op-num">3</span><span class="op-text">元付け会社の連絡先（電話番号・担当者名）を確認する</span></li>
+            <li><span class="op-num">4</span><span class="op-text">広告掲載の可否（<strong>広告可・広告不可</strong>）を必ず確認する</span></li>
+            <li><span class="op-num">5</span><span class="op-text">内見希望の場合は元付け会社へ電話して確認する</span></li>
+          </ul>
+          <div class="img-placeholder">
+            <span class="img-icon">🖼️</span>
+            <span>物件詳細画面のスクリーンショットをここに貼る</span>
+          </div>
+          <table class="term-table">
+            <tr>
+              <th>表示</th>
+              <th>意味</th>
+            </tr>
+            <tr>
+              <td><strong>広告可</strong></td>
+              <td>自社のサイト・チラシ等に掲載してよい</td>
+            </tr>
+            <tr>
+              <td><strong>広告不可</strong></td>
+              <td>掲載してはいけない。元付けのみ扱う物件</td>
+            </tr>
+            <tr>
+              <td><strong>AD（広告料）</strong></td>
+              <td>元付けから客付けへ支払われる報酬。「AD1」なら賃料1か月分</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 物件登録 -->
+    <div class="step" id="sec-register" data-tone="orange">
+      <button class="step-header">
+        <div class="step-title-wrap">
+          <span class="step-name">④ 物件登録</span>
+          <span class="step-badge">新規物件を載せるとき</span>
+        </div>
+        <span class="step-arrow">▶</span>
+      </button>
+      <div class="step-body">
+        <div class="step-body-inner">
+          <ul class="op-list">
+            <li><span class="op-num">1</span><span class="op-text">メニューから<strong>「物件登録」</strong>をクリックする</span></li>
+            <li><span class="op-num">2</span><span class="op-text">物件種別を選択する（居住用賃貸・事業用賃貸・売買など）</span></li>
+            <li><span class="op-num">3</span><span
+                class="op-text"><strong>物件名・所在地・賃料・間取り・面積・築年数・構造</strong>などを入力する</span></li>
+            <li><span class="op-num">4</span><span class="op-text">敷金・礼金・管理費・駐車場の有無などの条件を入力する</span></li>
+            <li><span class="op-num">5</span><span class="op-text">図面（PDF）や写真があればアップロードする</span></li>
+            <li><span class="op-num">6</span><span class="op-text">広告掲載の可否を設定する（<strong>広告可 / 広告不可</strong>）</span></li>
+            <li><span class="op-num">7</span><span class="op-text">内容を確認して<strong>「登録」</strong>ボタンを押す</span></li>
+          </ul>
+          <div class="img-placeholder">
+            <span class="img-icon">🖼️</span>
+            <span>物件登録画面のスクリーンショットをここに貼る</span>
+          </div>
+          <div class="point-box red" style="margin-top:12px;">
+            <strong>⚠️ 登録前に必ず確認すること</strong>
+            大家の同意なく勝手に登録しないこと。登録内容（賃料・条件等）は必ず大家・担当者と確認してから入力する。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ 物件情報変更 -->
+    <div class="step" id="sec-update" data-tone="orange">
+      <button class="step-header">
+        <div class="step-title-wrap">
+          <span class="step-name">⑤ 物件情報の変更・更新</span>
+          <span class="step-badge">賃料変更・条件更新</span>
+        </div>
+        <span class="step-arrow">▶</span>
+      </button>
+      <div class="step-body">
+        <div class="step-body-inner">
+          <ul class="op-list">
+            <li><span class="op-num">1</span><span
+                class="op-text">メニューから<strong>「自社物件一覧」</strong>または<strong>「登録物件管理」</strong>を開く</span></li>
+            <li><span class="op-num">2</span><span class="op-text">変更したい物件を選択する</span></li>
+            <li><span class="op-num">3</span><span class="op-text"><strong>「変更」</strong>ボタンをクリックして編集画面を開く</span></li>
+            <li><span class="op-num">4</span><span class="op-text">修正箇所（賃料・条件・図面など）を変更する</span></li>
+            <li><span class="op-num">5</span><span class="op-text"><strong>「更新」</strong>ボタンを押して保存する</span></li>
+          </ul>
+          <div class="img-placeholder">
+            <span class="img-icon">🖼️</span>
+            <span>物件変更画面のスクリーンショットをここに貼る</span>
+          </div>
+          <div class="point-box">
+            <strong>💡 定期更新について</strong>
+            レインズは一定期間更新がないと情報が古いと判断される。定期的に「更新」を行い、情報を最新に保つこと。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ 成約報告 -->
+    <div class="step" id="sec-contract" data-tone="purple">
+      <button class="step-header">
+        <div class="step-title-wrap">
+          <span class="step-name">⑥ 成約報告</span>
+          <span class="step-badge">契約が決まったとき</span>
+        </div>
+        <span class="step-arrow">▶</span>
+      </button>
+      <div class="step-body">
+        <div class="step-body-inner">
+          <ul class="op-list">
+            <li><span class="op-num">1</span><span class="op-text">「自社物件一覧」から成約した物件を選択する</span></li>
+            <li><span class="op-num">2</span><span class="op-text"><strong>「成約報告」</strong>ボタンをクリックする</span></li>
+            <li><span class="op-num">3</span><span class="op-text">成約日・成約賃料・契約者情報（入力が必要な項目のみ）を入力する</span></li>
+            <li><span class="op-num">4</span><span class="op-text"><strong>「報告」</strong>ボタンを押す → 物件が「成約済み」に変わる</span>
+            </li>
+          </ul>
+          <div class="img-placeholder">
+            <span class="img-icon">🖼️</span>
+            <span>成約報告画面のスクリーンショットをここに貼る</span>
+          </div>
+          <div class="point-box red" style="margin-top:12px;">
+            <strong>⚠️ 成約報告は義務</strong>
+            契約が決まったらレインズへの成約報告は法律上の義務。忘れずに行うこと。報告が遅れると指導対象になる場合がある。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-wrap">
+      <a href="tj_shokyu_fixed.html" class="back-btn">◀ 初級編マニュアルに戻る</a>
+    </div>
+
+    <div class="footer">TJ 不動産部 / レインズ操作マニュアル</div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.step').forEach(step => {
+      const h = step.querySelector('.step-header');
+      const b = step.querySelector('.step-body');
+      if (!h || !b) return;
+      if (step.classList.contains('open')) b.style.maxHeight = b.scrollHeight + 'px';
+      h.addEventListener('click', () => {
+        if (step.classList.contains('open')) {
+          step.classList.remove('open');
+          b.style.maxHeight = 0;
+        } else {
+          step.classList.add('open');
+          b.style.maxHeight = b.scrollHeight + 'px';
+        }
+      });
+    });
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(btn.getAttribute('href'));
+        if (!target) return;
+        if (!target.classList.contains('open')) {
+          target.classList.add('open');
+          const b = target.querySelector('.step-body');
+          if (b) b.style.maxHeight = b.scrollHeight + 'px';
+        }
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      });
+    });
+  </script>
+
+  <a href="#"
+    style="position:fixed;bottom:24px;right:24px;background:#2f6fed;color:#fff;font-weight:900;font-size:1rem;padding:12px 18px;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(15,23,42,.25);z-index:9999;">▲
+    トップへ</a>
+</body>
+
+</html>

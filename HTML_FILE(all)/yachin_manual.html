@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>家賃管理物件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", "Meiryo", sans-serif;
+            margin: 0;
+            background: #f2f2f2;
+            color: #333;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 32px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 上部ロゴ */
+        .logo {
+            display: block;
+            width: 150px;
+            margin: 0 auto 8px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.9rem;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 4px;
+            color: #555;
+        }
+
+        /* ▼ タブUI */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 20px;
+        }
+
+        .tab-button {
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 1px solid #999;
+            background: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        .tab-button.active {
+            background: #4a90e2;
+            color: #fff;
+            border-color: #4a90e2;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        /* バッジ（カテゴリ表示） */
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 8px 0 16px;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+
+        .badge--sun {
+            border-color: #ff9a3c;
+            background: #fff6ea;
+        }
+
+        .badge--wed {
+            border-color: #4a90e2;
+            background: #e8f1ff;
+        }
+
+        /* 使い方ボックス */
+        .tip {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid #4caf50;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ▼ ステップ共通 */
+        .step {
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #4a90e2;
+        }
+
+        .step[data-level="0"] {
+            border-left-color: #4caf50;
+        }
+
+        .step[data-level="1"] {
+            border-left-color: #ff9a3c;
+        }
+
+        .step[data-level="2"] {
+            border-left-color: #f5a623;
+        }
+
+        .step[data-level="3"] {
+            border-left-color: #9c27b0;
+        }
+
+        .step[data-level="4"] {
+            border-left-color: #607d8b;
+        }
+
+        .step-header {
+            width: 100%;
+            border: none;
+            background: none;
+            padding: 10px 14px;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .step-title {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+        .step-icon {
+            font-size: 1.1rem;
+            min-width: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .step.open .step-icon {
+            transform: rotate(90deg);
+        }
+
+        /* 開閉アニメ */
+        .step-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s ease-out;
+            padding: 0 14px;
+        }
+
+        .step.open .step-body {
+            padding: 8px 14px 12px;
+        }
+
+        .step-body-inner {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .step-body-inner ul {
+            margin: 0 0 4px 1.2em;
+            padding-left: 0;
+        }
+
+        .step-body-inner li {
+            margin-bottom: 4px;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        .next-button {
+            display: inline-block;
+            padding: 14px 22px;
+            margin: 12px 0;
+
+            background-color: #e6f0ff;
+            /* ごく薄い青（背景） */
+            color: #000000 !important;
+            /* 黒文字 */
+            font-weight: 900;
+            /* 太字（超重要） */
+            font-size: 16px;
+
+            border-radius: 10px;
+            border: 3px solid #003a8f;
+            /* 濃い枠で輪郭を出す */
+
+            text-decoration: none;
+
+            box-shadow: 0 3px 0 #003a8f;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #777;
+        }
+
+        /* ▼ 枝分かれUI（電話／来客） */
+        .branch-section {
+            margin-top: 6px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: #fafafa;
+            border: 1px solid #ddd;
+        }
+
+        .branch-root {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .branch-node {
+            border-left: 3px solid #ccc;
+            padding-left: 10px;
+            margin-bottom: 8px;
+        }
+
+        .branch-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .branch-label {
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid #888;
+            background: #fafafa;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .branch-arrow {
+            font-size: 0.9rem;
+            transition: transform .2s;
+        }
+
+        .branch-node.open>.branch-header .branch-arrow {
+            transform: rotate(90deg);
+        }
+
+        .branch-children {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .25s ease-out;
+            margin-left: 8px;
+        }
+
+        .branch-body {
+            font-size: 0.9rem;
+            padding: 6px 0 4px;
+            line-height: 1.6;
+        }
+
+        .branch-body ul {
+            margin: 0 0 4px 1.2em;
+            padding-left: 0;
+        }
+
+        .branch-body li {
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                padding: 16px 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .step-header {
+                font-size: 0.95rem;
+                padding: 9px 12px;
+            }
+        }
+    </style>
+</head>
+.alert {
+color:#d32f2f;
+font-weight:700;
+background:#fff0f0;
+border-left:4px solid #d32f2f;
+padding:6px 10px;
+border-radius:6px;
+margin:6px 0;
+}
+
+<body>
+    <div class="page">
+        <div class="content">
+
+            <!-- 上部のTJロゴ -->
+            <img src="../images(all)/TJ_logo/tj.jpg" alt="タキザワ住販株式会社" class="company-logo" />
+
+            <h1>家賃管理物件</h1>
+
+            <!-- ステップ1：家賃管理物件（all） -->
+            <div class="step" data-level="1">
+                <button class="step-header">
+                    <div class="step-title">
+                        <span><strong>家賃管理物件</strong></span>
+                        <span class="step-label">（all）</span>
+                    </div>
+                    <span class="step-icon">▶</span>
+                </button>
+                <div class="step-body">
+                    <div class="step-body-inner">
+                        <ul>
+                            <div class="page">
+                                <h1>家賃管理物件</h1>
+                                <p><strong>タキザワ住販で家賃管理をしている物件です</strong></p>
+                                <div class="step-card">
+                                    <div class="img-wrap">
+                                        <!-- ★ ここにスクショファイル名を合わせる（例: raku_icon.jpg） -->
+                                        <img src="../images(all)/YACHIN_images/yachin.png"" alt=" 社長個人所有物件画面">
+                                    </div>
+                                    <p><strong></strong></p>
+                                    <p>※解約時に解約書類等は経理へまわす</p>
+                                </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step" data-level="1">
+                    <button class="step-header">
+                        <div class="step-title">
+                            <span><strong>社長所有物件</strong></span>
+                            <span class="step-label">社長個人所有物件</span>
+                        </div>
+                        <span class="step-icon">▶</span>
+                    </button>
+                    <div class="step-body">
+                        <div class="step-body-inner">
+                            <ul>
+                                <div class="page">
+                                    <h1>社長所有物件</h1>
+                                    <p><strong>家賃を受け取ったら、物件名・号室・名前を控え封筒に入れて社長の引き出しに入れる</strong></p>
+                                    <div class="step-card">
+                                        <div class="img-wrap">
+                                            <!-- ★ ここにスクショファイル名を合わせる（例: raku_icon.jpg） -->
+                                            <img src="../images(all)/YACHIN_images/yachin3.png"" alt=" 社長個人所有物件画面">
+                                        </div>
+                                        <p><strong>LINEで社長に報告する</strong></p>
+                                        <p>※okusei←靖子由来</p>
+                                    </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="step" data-level="1">
+                    <button class="step-header">
+                        <div class="step-title">
+                            <span><strong>居住用・事業用・駐車場</strong></span>
+                            <span class="step-label"></span>
+                        </div>
+                        <span class="step-icon">▶</span>
+                    </button>
+                    <div class="step-body">
+                        <div class="step-body-inner">
+                            <ul>
+                                <div class="page">
+                                    <h1>居住用・事業用・駐車場</h1>
+                                    <p><strong>大家の代わりに押印して良い物件はおぼえましょう</strong></p>
+                                    <div class="step-card">
+                                        <div class="img-wrap">
+                                            <!-- ★ ここにスクショファイル名を合わせる（例: raku_icon.jpg） -->
+                                            <img src="../images(all)/YACHIN_images/yachin1.png"" alt=" 社長個人所有物件画面">
+                                            <img src="../images(all)/YACHIN_images/yachin2.png"" alt=" 社長個人所有物件画面">
+                                        </div>
+                                        <p><strong>LINEで社長に報告する</strong></p>
+                                        <p>※okusei←靖子由来</p>
+                                    </div>
+                            </ul>
+
+
+
+
+                            <script>
+                                /* ▼ ステップ開閉 */
+                                const steps = document.querySelectorAll('.step');
+
+                                steps.forEach((step) => {
+                                    const header = step.querySelector('.step-header');
+                                    const body = step.querySelector('.step-body');
+
+                                    header.addEventListener('click', () => {
+                                        step.classList.toggle('open');
+                                        if (step.classList.contains('open')) {
+                                            body.style.maxHeight = body.scrollHeight + "px";
+                                        } else {
+                                            body.style.maxHeight = 0;
+                                        }
+                                    });
+
+                                    // 最初はステップ0だけ開いておく
+                                    if (parseInt(step.dataset.level, 10) === 0) {
+                                        step.classList.add('open');
+                                        body.style.maxHeight = body.scrollHeight + "px";
+                                    }
+                                });
+
+                                /* ▼ 次のステップへボタン */
+                                const nextButtons = document.querySelectorAll('.next-button');
+                                nextButtons.forEach(btn => {
+                                    const nextLevel = btn.getAttribute('data-next-step');
+                                    if (!nextLevel) return; // リンクボタン（楽々賃貸）はスキップ
+
+                                    btn.addEventListener('click', (e) => {
+                                        e.stopPropagation();
+                                        const nextStep = document.querySelector('.step[data-level="' + nextLevel + '"]');
+                                        if (nextStep) {
+                                            const body = nextStep.querySelector('.step-body');
+                                            nextStep.classList.add('open');
+                                            body.style.maxHeight = body.scrollHeight + "px";
+                                            nextStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                    });
+                                });
+
+                                /* ▼ タブ切り替え */
+                                const tabButtons = document.querySelectorAll('.tab-button');
+                                const tabContents = document.querySelectorAll('.tab-content');
+
+                                tabButtons.forEach(btn => {
+                                    btn.addEventListener('click', () => {
+                                        const targetId = btn.dataset.target;
+                                        tabButtons.forEach(b => b.classList.remove('active'));
+                                        tabContents.forEach(c => c.style.display = 'none');
+
+                                        btn.classList.add('active');
+                                        document.getElementById(targetId).style.display = 'block';
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    });
+                                });
+
+                                /* ▼ 枝分かれUI（電話・来客） */
+                                const branchNodes = document.querySelectorAll('.branch-node');
+
+                                branchNodes.forEach(node => {
+                                    const header = node.querySelector('.branch-header');
+                                    const children = node.querySelector('.branch-children');
+
+                                    children.style.maxHeight = 0;
+
+                                    header.addEventListener('click', () => {
+                                        const isOpen = node.classList.contains('open');
+                                        if (isOpen) {
+                                            node.classList.remove('open');
+                                            children.style.maxHeight = 0;
+                                        } else {
+                                            // 同じセクション内の他の枝を閉じる
+                                            const siblings = node.parentElement.querySelectorAll('.branch-node');
+                                            siblings.forEach(sib => {
+                                                if (sib !== node) {
+                                                    sib.classList.remove('open');
+                                                    const c = sib.querySelector('.branch-children');
+                                                    if (c) c.style.maxHeight = 0;
+                                                }
+                                            });
+
+                                            node.classList.add('open');
+                                            children.style.maxHeight = children.scrollHeight + "px";
+                                        }
+                                    });
+                                });
+                            </script>
+</body>
+
+</html>

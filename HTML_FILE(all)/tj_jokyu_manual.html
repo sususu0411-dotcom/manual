@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TJ 業務ロードマップ（上級編）</title>
+  <style>
+    :root {
+      --bg: #f2f4f7;
+      --card: #ffffff;
+      --text: #243042;
+      --muted: #667085;
+      --line: #d0d5dd;
+      --blue: #2f6fed;
+      --blue-soft: #eef4ff;
+      --green: #16a34a;
+      --green-soft: #eefcf3;
+      --orange: #f59e0b;
+      --orange-soft: #fff7e8;
+      --red: #dc2626;
+      --red-soft: #fff1f1;
+      --purple: #7c3aed;
+      --purple-soft: #f5f0ff;
+      --shadow: 0 8px 24px rgba(15, 23, 42, .06);
+      --shadow-strong: 0 10px 26px rgba(15, 23, 42, .10);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 14px 48px;
+    }
+
+    .hero,
+    .panel,
+    .step,
+    .faq-item,
+    .quick-card,
+    .level-card,
+    .mini-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 24px 18px 18px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .company-logo {
+      width: 240px;
+      max-width: 80%;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.9rem;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: .98rem;
+      margin-top: 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: .85rem;
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .tab-menu {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      border: 2px solid #9aa4b2;
+      background: #fff;
+      border-radius: 12px;
+      padding: 11px 20px;
+      font-size: .96rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 0 rgba(15, 23, 42, .18);
+      transition: .18s ease;
+    }
+
+    .tab-button:hover {
+      transform: translateY(-1px);
+      border-color: #64748b;
+    }
+
+    .tab-button.active {
+      background: var(--blue);
+      border-color: #1d4ed8;
+      color: #fff;
+      box-shadow: 0 3px 0 #1d4ed8;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .panel {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .panel p {
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .quick-card {
+      border: 2px solid #d6deea;
+      padding: 14px;
+    }
+
+    .quick-title {
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-size: .95rem;
+    }
+
+    .quick-buttons,
+    .mini-links,
+    .manual-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .jump-btn,
+    .manual-btn,
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: .92rem;
+      font-weight: 900;
+      border: 3px solid transparent;
+      cursor: pointer;
+      box-shadow: 0 3px 0 rgba(15, 23, 42, .18);
+      transition: .18s ease;
+    }
+
+    .jump-btn:hover,
+    .manual-btn:hover,
+    .link-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 0 rgba(15, 23, 42, .2);
+    }
+
+    .jump-btn {
+      background: var(--blue-soft);
+      border-color: #5b8def;
+      color: #103a8a;
+    }
+
+    .manual-btn {
+      background: #f8fafc;
+      border-color: #7f8ea3;
+      color: #243042;
+    }
+
+    .link-btn {
+      background: var(--green-soft);
+      border-color: #39a865;
+      color: #166534;
+    }
+
+    .level-card {
+      padding: 10px 14px;
+      border: 3px solid #b8c2d1;
+      min-height: 84px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      transition: .18s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 3px 0 rgba(15, 23, 42, .16);
+    }
+
+    .level-card::after {
+      content: "▶";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .95rem;
+      color: #365ea8;
+      font-weight: 900;
+    }
+
+    .level-card:hover {
+      transform: translateY(-2px);
+      border-color: #4f83eb;
+      box-shadow: 0 6px 0 rgba(15, 23, 42, .2);
+      background: #f8fbff;
+    }
+
+    .level-label {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+      font-weight: 800;
+    }
+
+    .level-title {
+      font-size: .98rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .level-note {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .mini-card {
+      padding: 14px;
+      border: 1px solid #e8ecf2;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .tip {
+      border: 2px solid #7ad39c;
+      border-left: 8px solid var(--green);
+      background: #fbfffc;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-strong);
+      font-size: .95rem;
+      text-align: left;
+    }
+
+    .tip strong:first-child {
+      display: inline-block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .step {
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-left: 8px solid var(--blue);
+    }
+
+    .step[data-tone="green"] {
+      border-left-color: var(--green);
+    }
+
+    .step[data-tone="orange"] {
+      border-left-color: var(--orange);
+    }
+
+    .step[data-tone="red"] {
+      border-left-color: var(--red);
+    }
+
+    .step[data-tone="purple"] {
+      border-left-color: var(--purple);
+    }
+
+    .step[data-tone="blue"] {
+      border-left-color: var(--blue);
+    }
+
+    .step-header {
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .step-name {
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid #d8dee8;
+      padding: 4px 10px;
+      font-size: .8rem;
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .step-arrow {
+      font-size: 1.1rem;
+      font-weight: 900;
+      transition: transform .2s ease;
+      color: #344054;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .step.open .step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .step-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+      padding: 0 16px;
+    }
+
+    .step.open .step-body {
+      padding: 0 16px 16px;
+    }
+
+    .step-body-inner {
+      font-size: .95rem;
+    }
+
+    .step-body-inner ul {
+      margin: 6px 0 0 1.2em;
+      padding-left: 0;
+    }
+
+    .step-body-inner li {
+      margin-bottom: 5px;
+    }
+
+    .branch-section {
+      border: 2px solid #d7dde8;
+      border-radius: 12px;
+      background: #fcfdff;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    .branch-root {
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .branch-node {
+      border-left: 4px solid #b8c7e6;
+      margin-bottom: 8px;
+      padding-left: 10px;
+    }
+
+    .branch-header {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      cursor: pointer;
+      font-size: .95rem;
+      padding: 4px 0;
+    }
+
+    .branch-label {
+      border: 1px solid #b9c4d3;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: .84rem;
+      font-weight: 800;
+      background: #fff;
+    }
+
+    .branch-arrow {
+      transition: transform .2s ease;
+      font-weight: 900;
+      color: #103a8a;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .branch-node.open>.branch-header .branch-arrow {
+      transform: rotate(90deg);
+    }
+
+    .branch-children {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+      margin-left: 6px;
+    }
+
+    .branch-body {
+      font-size: .92rem;
+      padding: 4px 0 6px;
+    }
+
+    .note {
+      margin-top: 8px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid #e4e7ec;
+      font-size: .92rem;
+    }
+
+    .faq-item {
+      margin-bottom: 10px;
+      overflow: hidden;
+      border: 1px solid #e4e7ec;
+    }
+
+    .faq-q {
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 14px 16px;
+      font-size: .95rem;
+      font-weight: 900;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+      padding: 0 16px;
+      color: #475467;
+      font-size: .92rem;
+    }
+
+    .faq-item.open .faq-a {
+      padding: 0 16px 14px;
+    }
+
+    .faq-item.open .step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .level-card {
+        min-height: 88px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 16px 10px 40px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .step-header {
+        padding: 12px 14px;
+      }
+
+      .hero {
+        padding: 18px 14px 14px;
+      }
+    }
+
+    .back-wrap {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border: 2px solid #2f6fed;
+      border-radius: 12px;
+      background: #f8fbff;
+      color: #103a8a;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, .08);
+    }
+
+    .back-button:hover {
+      background: #2f6fed;
+      color: #fff;
+    }
+
+    .tab-note {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="hero"><img src="../images(all)/TJ_logo/tj.jpg" alt="タキザワ住販株式会社" class="company-logo" />
+      <h1>TJ 業務ロードマップ（上級編）</h1>
+      <p class="tab-note">別タブで開く専用ページです。ページ最下部から初級編に戻れます。</p>
+    </div>
+    <div class="tab-content active">
+      <div class="panel">
+        <h2>上級編</h2>
+        <p class="muted">書類作成と申込受付の中心業務です。まず賃貸か売買かを分けて考え、その後に作成方法へ進みます。</p>
+      </div>
+      <div class="grid grid-4" style="margin-bottom:16px;">
+        <a href="#" class="level-card" data-open-step="adv-keiyaku">
+          <div class="level-label">ステップ1（上級）</div>
+          <div class="level-title">契約書作成</div>
+          <div class="level-note">賃貸・売買を分けて作成</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="adv-jusetu">
+          <div class="level-label">ステップ2（上級）</div>
+          <div class="level-title">重説作成</div>
+          <div class="level-note">賃貸・売買で確認事項が違う</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="adv-moushikomi">
+          <div class="level-label">ステップ3（上級）</div>
+          <div class="level-title">申込用紙作成</div>
+          <div class="level-note">申込受付から書類準備へ</div>
+        </a>
+        <a href="#" class="level-card" data-open-step="adv-hosho">
+          <div class="level-label">上ステップ4（上級）</div>
+          <div class="level-title">家賃保証会社</div>
+          <div class="level-note">賃貸で必要な審査・申請対応</div>
+        </a>
+      </div>
+      <div class="step open" id="adv-keiyaku" data-tone="red"><button class="step-header">
+          <div class="step-title-wrap"><span class="step-name">上ステップ1（上級）：契約書作成</span><span
+              class="step-badge">賃貸・売買</span>
+          </div><span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <div class="branch-section">
+              <div class="branch-root">まず「賃貸」か「売買」かを決める</div>
+              <div class="branch-node">
+                <div class="branch-header"><span class="branch-arrow">▶</span><span
+                    class="branch-label">賃貸</span><span>契約書の作成方法</span></div>
+                <div class="branch-children">
+                  <div class="branch-body">
+                    <ul>
+                      <li>楽々で作成</li>
+                      <li>全日のテンプレで作成</li>
+                      <li>全日のWEB版で作成</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="branch-node">
+                <div class="branch-header"><span class="branch-arrow">▶</span><span
+                    class="branch-label">売買</span><span>契約書の作成方法</span></div>
+                <div class="branch-children">
+                  <div class="branch-body">
+                    <ul>
+                      <li>全日のテンプレで作成</li>
+                      <li>全日のWEB版で作成</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step" id="adv-jusetu" data-tone="blue"><button class="step-header">
+            <div class="step-title-wrap"><span class="step-name">ステップ2（上級）：重説作成</span><span
+                class="step-badge">賃貸・売買</span>
+            </div><span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <ul>
+                <li>まず賃貸か売買かを確認する</li>
+                <li>物件資料・法令制限・設備・特約など必要情報を集める</li>
+                <li>作成方法は、賃貸なら楽々・全日テンプレ・全日WEB、売買なら主に全日テンプレ・全日WEBを使い分ける</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="step" id="adv-moushikomi" data-tone="green"><button class="step-header">
+            <div class="step-title-wrap"><span class="step-name">ステップ3（上級）：申込用紙作成</span><span
+                class="step-badge">賃貸中心</span>
+            </div><span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <ul>
+                <li>申込者情報、勤務先、緊急連絡先、入居希望日を確認する</li>
+                <li>申込内容に不備がないか確認し、必要書類を案内する</li>
+                <li>申込用紙作成後、保証会社審査や契約準備へつなぐ</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="step" id="adv-hosho" data-tone="orange"><button class="step-header">
+            <div class="step-title-wrap"><span class="step-name">上ステップ4（上級）：家賃保証会社</span><span
+                class="step-badge">賃貸中心</span>
+            </div><span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <ul>
+                <li>保証会社の種類、申込方法、必要書類を確認する</li>
+                <li>審査依頼後、結果を確認して契約準備へ進める</li>
+                <li>否決・追加書類・再申請時の流れも把握しておく</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer">TJ 不動産部ロードマップ / 上級編</div>
+        <div class="back-wrap" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px;">
+          <a href="tj_shokyu_fixed.html" class="back-button">◀ 初級編に戻る</a>
+          <a href="tj_chukyu_manual.html" class="back-button">◀ 中級編に戻る</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openStep(step) { const body = step.querySelector('.step-body'); if (!body) return; step.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+      function closeStep(step) { const body = step.querySelector('.step-body'); if (!body) return; step.classList.remove('open'); body.style.maxHeight = 0; }
+      document.querySelectorAll('.step').forEach(step => { const h = step.querySelector('.step-header'); const b = step.querySelector('.step-body'); if (!h || !b) return; h.addEventListener('click', () => { step.classList.contains('open') ? closeStep(step) : openStep(step) }); if (step.classList.contains('open')) b.style.maxHeight = b.scrollHeight + 'px'; });
+      document.querySelectorAll('.branch-node').forEach(node => { const h = node.querySelector('.branch-header'); const c = node.querySelector('.branch-children'); if (!h || !c) return; c.style.maxHeight = 0; h.addEventListener('click', () => { const isOpen = node.classList.contains('open'); if (isOpen) { node.classList.remove('open'); c.style.maxHeight = 0; } else { node.classList.add('open'); c.style.maxHeight = c.scrollHeight + 'px'; } }); });
+      document.querySelectorAll('[data-open-step]').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); const t = document.getElementById(btn.dataset.openStep); if (!t) return; if (t.classList.contains('step')) openStep(t); setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120); }));
+    </script>
+    <a href="#"
+      style="position:fixed;bottom:24px;right:24px;background:#2f6fed;color:#fff;font-weight:900;font-size:1rem;padding:12px 18px;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(15,23,42,.25);z-index:9999;">▲
+      トップへ戻る</a>
+</body>
+
+</html>

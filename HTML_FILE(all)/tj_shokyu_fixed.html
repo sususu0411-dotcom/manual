@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TJ 業務ロードマップ</title>
+  <style>
+    :root {
+      --bg: #f2f4f7;
+      --card: #ffffff;
+      --text: #243042;
+      --muted: #667085;
+      --line: #d0d5dd;
+      --blue: #2f6fed;
+      --blue-soft: #eef4ff;
+      --green: #16a34a;
+      --green-soft: #eefcf3;
+      --orange: #f59e0b;
+      --orange-soft: #fff7e8;
+      --red: #dc2626;
+      --red-soft: #fff1f1;
+      --purple: #7c3aed;
+      --purple-soft: #f5f0ff;
+      --shadow: 0 8px 24px rgba(15, 23, 42, .06);
+      --shadow-strong: 0 10px 26px rgba(15, 23, 42, .10);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 14px 48px;
+    }
+
+    .hero,
+    .panel,
+    .step,
+    .faq-item,
+    .quick-card,
+    .level-card,
+    .mini-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 24px 18px 18px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .company-logo {
+      width: 240px;
+      max-width: 80%;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.9rem;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: .98rem;
+      margin-top: 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: .85rem;
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .tab-menu {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      border: 2px solid #9aa4b2;
+      background: #fff;
+      border-radius: 12px;
+      padding: 11px 20px;
+      font-size: .96rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 0 rgba(15, 23, 42, .18);
+      transition: .18s ease;
+    }
+
+    .tab-button:hover {
+      transform: translateY(-1px);
+      border-color: #64748b;
+    }
+
+    .tab-button.active {
+      background: var(--blue);
+      border-color: #1d4ed8;
+      color: #fff;
+      box-shadow: 0 3px 0 #1d4ed8;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .panel {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .panel p {
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .quick-card {
+      border: 2px solid #d6deea;
+      padding: 14px;
+    }
+
+    .quick-title {
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-size: .95rem;
+    }
+
+    .quick-buttons,
+    .mini-links,
+    .manual-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .jump-btn,
+    .manual-btn,
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: .92rem;
+      font-weight: 900;
+      border: 3px solid transparent;
+      cursor: pointer;
+      box-shadow: 0 3px 0 rgba(15, 23, 42, .18);
+      transition: .18s ease;
+    }
+
+    .jump-btn:hover,
+    .manual-btn:hover,
+    .link-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 0 rgba(15, 23, 42, .2);
+    }
+
+    .jump-btn {
+      background: var(--blue-soft);
+      border-color: #5b8def;
+      color: #103a8a;
+    }
+
+    .manual-btn {
+      background: #f8fafc;
+      border-color: #7f8ea3;
+      color: #243042;
+    }
+
+    .link-btn {
+      background: var(--green-soft);
+      border-color: #39a865;
+      color: #166534;
+    }
+
+    .level-card {
+      padding: 10px 14px;
+      border: 3px solid #b8c2d1;
+      min-height: 84px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      transition: .18s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 3px 0 rgba(15, 23, 42, .16);
+    }
+
+    .level-card::after {
+      content: "▶";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .95rem;
+      color: #365ea8;
+      font-weight: 900;
+    }
+
+    .level-card:hover {
+      transform: translateY(-2px);
+      border-color: #4f83eb;
+      box-shadow: 0 6px 0 rgba(15, 23, 42, .2);
+      background: #f8fbff;
+    }
+
+    .level-label {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+      font-weight: 800;
+    }
+
+    .level-title {
+      font-size: .98rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .level-note {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .mini-card {
+      padding: 14px;
+      border: 1px solid #e8ecf2;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .tip {
+      border: 2px solid #7ad39c;
+      border-left: 8px solid var(--green);
+      background: #fbfffc;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-strong);
+      font-size: .95rem;
+      text-align: left;
+    }
+
+    .tip strong:first-child {
+      display: inline-block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .step {
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-left: 8px solid var(--blue);
+    }
+
+    .step[data-tone="green"] {
+      border-left-color: var(--green);
+    }
+
+    .step[data-tone="orange"] {
+      border-left-color: var(--orange);
+    }
+
+    .step[data-tone="red"] {
+      border-left-color: var(--red);
+    }
+
+    .step[data-tone="purple"] {
+      border-left-color: var(--purple);
+    }
+
+    .step[data-tone="blue"] {
+      border-left-color: var(--blue);
+    }
+
+    .step-header {
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .step-name {
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid #d8dee8;
+      padding: 4px 10px;
+      font-size: .8rem;
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .step-arrow {
+      font-size: 1.1rem;
+      font-weight: 900;
+      transition: transform .2s ease;
+      color: #344054;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .step.open .step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .step-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+      padding: 0 16px;
+    }
+
+    .step.open .step-body {
+      padding: 0 16px 16px;
+    }
+
+    .step-body-inner {
+      font-size: .95rem;
+      text-align: left;
+    }
+
+    .step-body-inner ul {
+      margin: 6px 0 0 1.2em;
+      padding-left: 0;
+    }
+
+    .step-body-inner li {
+      margin-bottom: 5px;
+    }
+
+    .branch-section {
+      border: 2px solid #d7dde8;
+      border-radius: 12px;
+      background: #fcfdff;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    .branch-root {
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .branch-node {
+      border-left: 4px solid #b8c7e6;
+      margin-bottom: 8px;
+      padding-left: 10px;
+    }
+
+    .branch-header {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      cursor: pointer;
+      font-size: .95rem;
+      padding: 4px 0;
+    }
+
+    .branch-label {
+      border: 2px solid #1e40af;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: .84rem;
+      font-weight: 800;
+      background: #fff;
+    }
+
+    .branch-arrow {
+      transition: transform .2s ease;
+      font-weight: 900;
+      color: #103a8a;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .branch-node.open>.branch-header .branch-arrow {
+      transform: rotate(90deg);
+    }
+
+    .branch-children {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+      margin-left: 6px;
+    }
+
+    .branch-body {
+      font-size: .92rem;
+      padding: 4px 0 6px;
+    }
+
+    .note {
+      margin-top: 8px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid #e4e7ec;
+      font-size: .92rem;
+    }
+
+    .faq-item {
+      margin-bottom: 10px;
+      overflow: hidden;
+      border: 1px solid #e4e7ec;
+    }
+
+    .faq-q {
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 14px 16px;
+      font-size: .95rem;
+      font-weight: 900;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+      padding: 0 16px;
+      color: #475467;
+      font-size: .92rem;
+    }
+
+    .faq-item.open .faq-a {
+      padding: 0 16px 14px;
+    }
+
+    .faq-item.open .step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .level-card {
+        min-height: 88px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 16px 10px 40px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .step-header {
+        padding: 12px 14px;
+      }
+
+      .hero {
+        padding: 18px 14px 14px;
+      }
+    }
+
+    /* 成長ロード チェック */
+    .level-check-wrap {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .level-check {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+
+    .level-card.cleared {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .level-card.cleared .level-check-wrap {
+      color: var(--green);
+    }
+
+    /* ステップ0の箇条書きを左寄せ */
+    #step-start .step-body,
+    #step-start .step-body-inner,
+    #step-start .step-body-inner ul,
+    #step-start .step-body-inner li {
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="hero">
+      <img src="../images(all)/TJ_logo/tj.jpg" alt="タキザワ住販株式会社" class="company-logo" />
+      <h1>TJ 業務ロードマップ（初級編）</h1>
+      <div class="tip">
+        <strong>使い方</strong><br>
+        ① 迷ったら上の <strong>「困ったらここ」</strong> を押す<br>
+        ② 学ぶ時は <strong>「今日の仕事」</strong> から順番に進む<br>
+        ③ 画面操作が必要になったら <strong>画面付きマニュアル</strong> を開く
+      </div>
+
+      <div class="panel">
+        <h2>🎓 成長ロード</h2>
+        <div class="grid grid-4">
+          <a href="#" class="level-card" data-open-step="step-phone" data-level-id="lv1">
+            <label class="level-check-wrap" onclick="event.stopPropagation()">
+              <input type="checkbox" class="level-check" data-level-id="lv1"> クリア
+            </label>
+            <div class="level-label">Lv1</div>
+            <div class="level-title">電話に出られる</div>
+            <div class="level-note">保留・取次ぎ・空室確認の流れを覚える</div>
+          </a>
+          <a href="#" class="level-card" data-open-step="step-app" data-level-id="lv2">
+            <label class="level-check-wrap" onclick="event.stopPropagation()">
+              <input type="checkbox" class="level-check" data-level-id="lv2"> クリア
+            </label>
+            <div class="level-label">Lv2</div>
+            <div class="level-title">空室確認できる</div>
+            <div class="level-note">楽々賃貸で状況を見て案内できる</div>
+          </a>
+          <a href="#" class="level-card" data-open-step="step-visit" data-level-id="lv3">
+            <label class="level-check-wrap" onclick="event.stopPropagation()">
+              <input type="checkbox" class="level-check" data-level-id="lv3"> クリア
+            </label>
+            <div class="level-label">Lv3</div>
+            <div class="level-title">来客対応できる</div>
+            <div class="level-note">お客さん・借主さん・大家さんを振り分ける</div>
+          </a>
+          <a href="#" class="level-card" data-open-step="step-bind" data-level-id="lv4">
+            <label class="level-check-wrap" onclick="event.stopPropagation()">
+              <input type="checkbox" class="level-check" data-level-id="lv4"> クリア
+            </label>
+            <div class="level-label">Lv4</div>
+            <div class="level-title">製本ができる</div>
+            <div class="level-note">製本・押印・鉛筆〇つけ・付箋</div>
+          </a>
+          <a href="#" class="level-card" data-open-step="step-keiyaku" data-level-id="lv5">
+            <label class="level-check-wrap" onclick="event.stopPropagation()">
+              <input type="checkbox" class="level-check" data-level-id="lv5"> クリア
+            </label>
+            <div class="level-label">Lv5</div>
+            <div class="level-title">契約準備</div>
+            <div class="level-note">謄本取得・必要書類の収集</div>
+          </a>
+          <a href="#" class="level-card" data-open-step="step-shorui" data-level-id="lv6">
+            <label class="level-check-wrap" onclick="event.stopPropagation()">
+              <input type="checkbox" class="level-check" data-level-id="lv6"> クリア
+            </label>
+            <div class="level-label">Lv6</div>
+            <div class="level-title">書類整理ができる</div>
+            <div class="level-note">新規・更新それぞれの綴じ順を覚える</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="tab-menu">
+        <button class="tab-button active" data-target="fudosan">初級編</button>
+        <a class="tab-button tab-link" href="tj_chukyu_manual.html" target="_blank">中級編</a>
+        <a class="tab-button tab-link" href="tj_jokyu_manual.html" target="_blank">上級編</a>
+      </div>
+
+      <div id="fudosan" class="tab-content active">
+
+        <div class="grid grid-2">
+          <div class="quick-card">
+            <div class="quick-title">🚨 困ったらここ</div>
+            <div class="quick-buttons">
+              <button class="jump-btn" data-open-step="step-phone">☎ 電話が来た</button>
+              <button class="jump-btn" data-open-step="step-visit">🚪 来客が来た</button>
+              <button class="jump-btn" data-open-step="step-phone">🏠 空室を聞かれた</button>
+              <button class="jump-btn" data-open-step="step-phone">🚗 駐車場を聞かれた</button>
+              <button class="jump-btn" data-open-step="step-phone">📄 更新と言われた</button>
+              <button class="jump-btn" data-open-step="step-phone">🚪 解約と言われた</button>
+              <button class="jump-btn" data-open-step="step-phone">📞 社長あて電話</button>
+              <button class="jump-btn" data-open-step="faq-zone">❓ よくある質問</button>
+            </div>
+          </div>
+
+          <div class="quick-card">
+            <div class="quick-title">📅 今日の仕事</div>
+            <div class="quick-buttons">
+              <button class="link-btn" data-open-step="step-start">出勤ルーティン</button>
+              <button class="link-btn" data-open-step="step-app">アプリの使い方に慣れる</button>
+              <button class="link-btn" data-open-step="step-phone">電話対応を覚える</button>
+              <button class="link-btn" data-open-step="step-visit">来客対応を覚える</button>
+              <button class="link-btn" data-open-step="step-bind">製本を覚える</button>
+              <button class="link-btn" data-open-step="step-shorui">書類整理を覚える</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>📚 マニュアルへの入口</h2>
+          <div class="manual-links">
+            <a href="line_manual.html" target="_blank" class="manual-btn">LINE</a>
+            <a href="raku_manual.html" target="_blank" class="manual-btn">楽々</a>
+            <a href="reins_manual.html" target="_blank" class="manual-btn">レインズ</a>
+            <a href="seihon_manual.html" target="_blank" class="manual-btn">製本</a>
+            <a href="itandi_manual.html" target="_blank" class="manual-btn">ITANDI</a>
+            <a href="ierabu_manual.html" target="_blank" class="manual-btn">いえらぶ</a>
+            <a href="hatosapo_manual.html" target="_blank" class="manual-btn">ハトサポ</a>
+            <a href="yachin_manual.html" target="_blank" class="jump-btn">家賃管理</a>
+            <a href="gyokai_yougo.html" target="_blank" class="jump-btn">業界用語</a>
+          </div>
+        </div>
+
+        <div class="section-title">基本ロードマップ</div>
+
+        <div class="step open" id="step-start" data-tone="green">
+          <button class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-name">ステップ0：出勤したらまずやること</span>
+              <span class="step-badge">毎回共通</span>
+            </div>
+            <span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <ul>
+                （1）<strong>鍵の入っている引出し</strong>の鍵を開けておく<br>
+                （2）<strong>机まわりを軽く整える</strong><br>
+                （3）パソコンの電源を入れ<strong>LINE WORKS・楽々賃貸などの必要アプリ</strong>を立ち上げる<br>
+                （4）<strong>LINEを読み、メンションされている用件を確認</strong>する<br>
+                （5）「タスクボード」で「やり残したこと、今日やること」を確認する（仕事にも慣れてきて荒井さんボードを持つようになってからでOK）<br>
+              </ul>
+              <p class="note"><strong>※ ここは出勤儀式です。毎回同じ流れで始めてください。</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" id="step-app" data-tone="blue">
+          <button class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-name">ステップ1：アプリ関係</span>
+              <span class="step-badge">まず開くもの</span>
+            </div>
+            <span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <ul>
+                <li><strong>LINE WORKS</strong>へログイン　➡　<strong>ID：arai@t-jyuuhann</strong></li>
+                <li>出勤時には未読メッセージを確認する</li>
+                <li>頼み事は、できるだけLINEに残しておく</li>
+                <li><strong>楽々賃貸</strong>へログインしておく</li>
+                <li>大抵の問い合わせは楽々賃貸で対応できる</li>
+                <li><strong>ITANDI</strong>もログインしておく（当分は閲覧中心でOK）</li>
+              </ul>
+              <div class="mini-links" style="margin-top:10px;">
+                <a href="line_manual.html" target="_blank" class="manual-btn">LINE WORKSマニュアル</a>
+                <a href="raku_manual.html" target="_blank" class="manual-btn">楽々賃貸マニュアル</a>
+                <a href="itandi_manual.html" target="_blank" class="manual-btn">ITANDIマニュアル</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" id="step-phone" data-tone="red">
+          <button class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-name">ステップ2：電話対応</span>
+              <span class="step-badge">最重要</span>
+              <span class="step-badge">迷ったら保留</span>
+            </div>
+            <span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <p><strong>電話に出る時の基本</strong></p>
+              <ul>
+                <li>「<strong>タキザワ住販の〇〇でございます</strong>」で出る</li>
+                <li>わからない時は<strong>保留</strong>にして、対応可能な人に聞くか電話番号を聞き折り返す</li>
+                <li>会社名や名前が聞き取れなければ「もう一度お名前よろしいでしょうか？」でOK</li>
+              </ul>
+
+              <div class="branch-section">
+                <div class="branch-root">📡 必要な電話</div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">物件確認</span><span>不動産業者からの電話</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>「物件名／部屋番号」をメモして<strong>楽々賃貸</strong>で確認</li>
+                        <li>居住用の内見方法を聞かれたら　➡　<strong>「イタンジからお願いします」</strong></li>
+                        <li>事業用の内見方法を聞かれたら　➡　<strong>「名刺FAXでお願いします」</strong></li>
+                        <li>広告掲載確認　➡　<strong>「広告掲載承諾書をFAXしてください」</strong></li>
+                        <li>売買物件の確認　➡　対応可能な人へ聞くor取次ぎ。いなければ電話番号を聞き折返し</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">相談の電話</span><span>一般の人から</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>借りたい　➡　「受付表（名前・電話番号・条件等）」を聞いて折返す</li>
+                        <li>貸したい・買いたい・売りたい　➡　ある程度ヒアリングして、社長から折返す旨を伝える</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">解約の電話</span><span>借主から</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>「物件名（駐車場名）／部屋番号（区画番号）」を一応聞き<strong>タキザワ住販のホームページ</strong>へ誘導する</li>
+                        <li>
+                          居宅・駐車場・事業用物件（事務所・店舗・工場等）の解約　➡　<strong>タキザワ住販のホームページの下部に解約フォーム</strong>があるのでそちらから送信してもらう　➡　メール(taikyo@)に解約通知が届くので印刷する
+                        </li>
+                        <li>高齢者等で入力できない人　➡　保留にして契約書を確認し、解約進行チェックリストに沿ってヒアリング</li>
+                      </ul>
+                      <div class="mini-links">
+                        <a href="taikyo_itandi.html" target="_blank" class="manual-btn">ITANDI解約マニュアル</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">更新の電話</span><span>借主から</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>「物件名（駐車場名）／部屋番号（区画番号）」を聞き保留にする</li>
+                        <li>居住用・事業用物件（事務所・店舗・工場等）の場合　➡　<strong>更新ファイル</strong>を探し状況を伝える</li>
+                        <li>駐車場の場合　➡　駐車場の更新は電子契約なので、招待メールが届いてるはずなのでマイページの登録へ誘導</li>
+                        　　　　　　　　　よくわからなければ担当者から折返す旨を伝える。
+                      </ul>
+                      <div class="mini-links">
+                        <a href="taikyo_itandi.html" target="_blank" class="manual-btn">ITANDI解約マニュアル</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">社長あての電話</span><span>誰からでも用件確認</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>「具体的な用件／名前」をメモして、在席なら繋ぐ</li>
+                        <li>不在なら電話番号も聞き、折返す旨を伝える</li>
+                        <li>営業電話か判断できない時は、実際にやり取りしている相手かを確認</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">従業員あて</span><span>〇〇さんいますか</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>対応可能そうであれば、そのまま取次いでOK</li>
+                        <li>不在・対応不可の場合は「名前、電話番号、用件」を聞いて折返し</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">駐車場の電話</span><span>空き状況など</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>「駐車場名・区画番号」を確認して<strong>楽々賃貸</strong>で検索</li>
+                        <li>現空・空き予定　➡　一度現地確認してもらい、その後に申込みへ案内</li>
+                        <li>申込　➡　「大変申し訳ございませんが申込が入っております」</li>
+                        <li>契約・他済　➡　「大変申し訳ございませんが現在契約中です」</li>
+                        <li>オーナー使用・保留　➡　「大変申し訳ございませんが募集しておりません」</li>
+                        <li>初期費用は約3か月分、更新は1年毎、更新手数料は新賃料0.5か月＋税</li>
+                        <li>解約は1か月前通告、解約月は日割りなし</li>
+                        <li>更新時は電子契約に移行するため、マイページ開設が必要</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-root" style="margin-top:10px;">📡 営業電話</div>
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">営業電話</span><span>サービス・広告など</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>基本ワード：<strong>「大変申し訳ございませんが、弊社ではそのようなサービスを使う予定はございません」</strong></li>
+                        <li>しつこい時：<strong>「これ以上お話を伺うことが出来ません。必要であればこちらからご連絡いたします」</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="step" id="step-visit" data-tone="orange">
+          <button class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-name">ステップ3：来客対応</span>
+              <span class="step-badge">お客さん・借主・大家・営業</span>
+            </div>
+            <span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <p><strong>来客があった時の基本</strong>　➡　まず「いらっしゃいませ」と声をかける</p>
+
+              <div class="branch-section">
+                <div class="branch-root">👀 だれが来たかで判断する</div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">お客さん</span><span>初めて来た人・内見希望など</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>「本日はどのようなご用件でしょうか？」と確認</li>
+                        <li>賃貸希望・売買希望をざっくり聞き、席へ案内して担当へ伝える</li>
+                        <li>慣れてきたら受付表に沿ってヒアリング</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">借主さん</span><span>家賃・更新・相談</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>お名前と「どちらの物件の何号室か」を確認</li>
+                        <li>家賃支払い　➡　賃料と家賃帳を預かり、受取日・何月分・金額を記入して角印を押す</li>
+                        <li>受け取った家賃は金庫へ入れ、出納帳に記入</li>
+                        <li>社長個人所有物件は出納帳に記載せず、封筒に入れて社長机引出しへ</li>
+                        <li>更新料支払い　➡　更新ファイルを確認し、日付記入＆出納帳記入</li>
+                        <li>相談　➡　用件を聞いて、対応可能な人へ伝える</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">大家さん</span><span>オーナー</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>「いつもお世話になっております」と一言そえて用件を聞く</li>
+                        <li>物件名を確認し、お渡しボックスを確認する</li>
+                        <li>相談なら席へ案内して社長または対応可能な人へ伝える</li>
+                        <li>誰もいなければ内容を聞き、後日社長から電話すると伝える</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="branch-node">
+                  <div class="branch-header"><span class="branch-arrow">▶</span><span
+                      class="branch-label">営業・不動産業者</span><span>業者対応</span></div>
+                  <div class="branch-children">
+                    <div class="branch-body">
+                      <ul>
+                        <li>まず用件を確認する</li>
+                        <li>営業なら「資料だけお預かりしてお伝えします」でOK</li>
+                        <li>不動産業者の営業も同じく資料預かりでOK</li>
+                        <li>売買用地確認などは、売買している物件があれば資料を渡す</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="step" id="step-bind" data-tone="purple">
+          <button class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-name">ステップ4：製本関係</span>
+              <span class="step-badge">契約書・更新契約書</span>
+            </div>
+            <span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <ul>
+                <li>契約書・重要事項説明書を製本テープでまとめる</li>
+                <li>割印の場所　➡　表紙と裏面</li>
+                <li>業者印　➡　タキザワ角印</li>
+                <li>代表取締役または宅地建物取引士　➡　滝沢印</li>
+              </ul>
+              <div class="mini-links" style="margin-top:10px;">
+                <a href="seihon_manual.html" target="_blank" class="manual-btn">製本マニュアルを開く</a>
+              </div>
+              <p class="note"><strong>ここまでできれば新人卒業ラインです。</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" id="step-keiyaku" data-tone="green">
+          <button class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-name">ステップ5：契約準備</span>
+              <span class="step-badge">書類収集</span>
+            </div>
+            <span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <ul>
+                <li><strong>【必要書類の確認・収集】</strong><br>
+                  個人：身分証（免許証・マイナンバーカードなど）・（必要があれば収入証明・源泉徴収票など）<br>
+                  法人：登記簿謄本・担当者身分証・決算書（求められる場合）
+                </li>
+                <li><strong>【保証会社への提出書類】</strong><br>
+                  保証委託申込書・身分証コピー・（必要があれば収入証明など）を揃えて審査依頼する
+                </li>
+                <li><strong>【書類の不備確認】</strong><br>
+                  記入漏れ・署名捺印漏れ・コピーの鮮明さを確認してから担当者へまわす
+                </li>
+                <li>すべて揃ったことを確認してから担当者へまわす</li>
+                <li><strong>【謄本（登記事項証明書）の取得】</strong><br>
+                  契約物件の土地・建物の謄本を登記簿図書館で取得<br>
+                  https://xn--udk1b673pynnijsb3h8izqr1a.com/kiyaku.html
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" id="step-shorui" data-tone="blue">
+          <button class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-name">ステップ6：書類整理</span>
+              <span class="step-badge">新規 / 更新</span>
+            </div>
+            <span class="step-arrow">▶</span>
+          </button>
+          <div class="step-body">
+            <div class="step-body-inner">
+              <p>契約の種類によって綴じ順が変わります。下のボタンで切り替えてください。</p>
+
+              <div style="display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
+                <button class="shorui-tab-btn active" data-shorui="shinkitab" style="padding:10px 22px; border-radius:10px; border:2px solid #2f6fed; background:#2f6fed; color:#fff; font-weight:800; cursor:pointer; font-size:.95rem;">🏠 新規（居住用）</button>
+                <button class="shorui-tab-btn" data-shorui="chushatab" style="padding:10px 22px; border-radius:10px; border:2px solid #9aa4b2; background:#fff; color:#243042; font-weight:800; cursor:pointer; font-size:.95rem;">🚗 新規（駐車場）</button>
+                <button class="shorui-tab-btn" data-shorui="teikitab" style="padding:10px 22px; border-radius:10px; border:2px solid #9aa4b2; background:#fff; color:#243042; font-weight:800; cursor:pointer; font-size:.95rem;">📋 定期借家契約</button>
+                <button class="shorui-tab-btn" data-shorui="kousintab" style="padding:10px 22px; border-radius:10px; border:2px solid #9aa4b2; background:#fff; color:#243042; font-weight:800; cursor:pointer; font-size:.95rem;">🔄 更新契約</button>
+              </div>
+
+              <!-- 新規契約（居住用） -->
+              <div id="shinkitab" class="shorui-content" style="display:block;">
+                <p style="margin:0 0 12px; font-weight:700; color:#2f6fed;">🏠 新規契約（居住用）の書類整理</p>
+                <p style="margin:0 0 14px; font-size:.9rem; color:#667085;">渡す相手によって綴じ順が異なります。4種類を確認してください。</p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+
+                  <!-- 貸主用 -->
+                  <div style="flex:1; min-width:200px; background:#eefcf3; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#16a34a; font-size:.95rem;">🏠 貸主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>精算書</strong></li>
+                      <li><strong>申込用紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                      <li><strong>身分証明書のコピー</strong></li>
+                      <li><strong>住民票</strong></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（賃貸人用）</span></li>
+                    </ol>
+                  </div>
+
+                  <!-- 借主用（通常） -->
+                  <div style="flex:1; min-width:200px; background:#eef4ff; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#2f6fed; font-size:.95rem;">👤 借主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                    </ol>
+                    <p style="margin-top:10px; font-size:.8rem; color:#667085;">※ 通常（自社で重説まで対応）の場合</p>
+                  </div>
+
+                  <!-- 借主用（重説を客付けでやった場合） -->
+                  <div style="flex:1; min-width:200px; background:#f5f0ff; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:6px; color:#7c3aed; font-size:.95rem;">👤 借主用</div>
+                    <div style="font-size:.8rem; color:#7c3aed; margin-bottom:10px; font-weight:700;">（重説を客付けでやった場合）</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                      <li><strong>重説</strong></li>
+                      <li><strong>紛争防止条例</strong></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（借主控え）</span></li>
+                      <li><strong>その他借主控え</strong></li>
+                    </ol>
+                  </div>
+
+                  <!-- TJ保存用 -->
+                  <div style="flex:1; min-width:200px; background:#fff1f1; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#dc2626; font-size:.95rem;">🗂 TJ保存用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>契約書写し</strong><br><span style="font-size:.8rem; color:#667085;">（表裏）</span></li>
+                      <li><strong>申込用紙</strong></li>
+                      <li><strong>重説</strong></li>
+                      <li><strong>紛争防止条例</strong></li>
+                      <li><strong>身分証明書のコピー</strong></li>
+                      <li><strong>住民票</strong></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（承認用紙）</span></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（代理人控え）</span></li>
+                    </ol>
+                  </div>
+
+                </div>
+
+                <div style="margin-top:14px; background:#fff7e8; border-radius:8px; padding:12px; font-size:.88rem; border-left:4px solid #f59e0b;">
+                  <strong>⚠ ポイント</strong><br>
+                  書類が全部揃ったら担当者に渡す前に、<strong>署名・捺印漏れ・記入漏れ</strong>がないか必ず確認すること。
+                </div>
+              </div>
+
+              <!-- 新規契約（駐車場） -->
+              <div id="chushatab" class="shorui-content" style="display:none;">
+                <p style="margin:0 0 12px; font-weight:700; color:#f59e0b;">🚗 新規契約（駐車場）の書類整理</p>
+                <p style="margin:0 0 14px; font-size:.9rem; color:#667085;">渡す相手によって綴じ順が異なります。3種類を確認してください。</p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+
+                  <!-- 貸主用 -->
+                  <div style="flex:1; min-width:200px; background:#eefcf3; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#16a34a; font-size:.95rem;">🏠 貸主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>精算書</strong></li>
+                      <li><strong>申込用紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                      <li><strong>身分証明書のコピー</strong></li>
+                      <li><strong>車検証</strong></li>
+                    </ol>
+                  </div>
+
+                  <!-- 借主用 -->
+                  <div style="flex:1; min-width:200px; background:#eef4ff; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#2f6fed; font-size:.95rem;">👤 借主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                    </ol>
+                  </div>
+
+                  <!-- TJ保存用 -->
+                  <div style="flex:1; min-width:200px; background:#fff1f1; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#dc2626; font-size:.95rem;">🗂 TJ保存用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>契約書写し</strong><br><span style="font-size:.8rem; color:#667085;">（A4）</span></li>
+                      <li><strong>申込用紙</strong></li>
+                      <li><strong>身分証明書のコピー</strong></li>
+                      <li><strong>車検証</strong></li>
+                    </ol>
+                  </div>
+
+                </div>
+
+                <div style="margin-top:14px; background:#fff7e8; border-radius:8px; padding:12px; font-size:.88rem; border-left:4px solid #f59e0b;">
+                  <strong>⚠ ポイント</strong><br>
+                  書類が全部揃ったら担当者に渡す前に、<strong>署名・捺印漏れ・記入漏れ</strong>がないか必ず確認すること。
+                </div>
+              </div>
+
+              <!-- 定期借家契約 -->
+              <div id="teikitab" class="shorui-content" style="display:none;">
+                <p style="margin:0 0 12px; font-weight:700; color:#7c3aed;">📋 定期借家契約の書類整理</p>
+                <p style="margin:0 0 14px; font-size:.9rem; color:#667085;">新規居住用の綴じ順に<strong>定期借家契約の説明</strong>が加わります。3種類を確認してください。</p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+
+                  <!-- 貸主用 -->
+                  <div style="flex:1; min-width:200px; background:#eefcf3; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#16a34a; font-size:.95rem;">🏠 貸主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>精算書</strong></li>
+                      <li><strong>申込用紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                      <li><strong>身分証明書のコピー</strong></li>
+                      <li><strong>住民票</strong></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（賃貸人用）</span></li>
+                      <li><strong>定期借家契約の説明</strong></li>
+                    </ol>
+                  </div>
+
+                  <!-- 借主用 -->
+                  <div style="flex:1; min-width:200px; background:#f5f0ff; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#7c3aed; font-size:.95rem;">👤 借主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                      <li><strong>重説</strong></li>
+                      <li><strong>紛争防止条例</strong></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（借主控え）</span></li>
+                      <li><strong>定期借家契約の説明</strong></li>
+                    </ol>
+                  </div>
+
+                  <!-- TJ保存用 -->
+                  <div style="flex:1; min-width:200px; background:#fff1f1; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#dc2626; font-size:.95rem;">🗂 TJ保存用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>契約書写し</strong><br><span style="font-size:.8rem; color:#667085;">（表裏）</span></li>
+                      <li><strong>申込用紙</strong></li>
+                      <li><strong>重説</strong></li>
+                      <li><strong>紛争防止条例</strong></li>
+                      <li><strong>身分証明書のコピー</strong></li>
+                      <li><strong>住民票</strong></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（承認用紙）</span></li>
+                      <li><strong>家賃保証</strong><br><span style="font-size:.8rem; color:#667085;">（代理人控え）</span></li>
+                      <li><strong>定期借家契約の説明</strong></li>
+                    </ol>
+                  </div>
+
+                </div>
+
+                <div style="margin-top:14px; background:#fff7e8; border-radius:8px; padding:12px; font-size:.88rem; border-left:4px solid #f59e0b;">
+                  <strong>⚠ ポイント</strong><br>
+                  書類が全部揃ったら担当者に渡す前に、<strong>署名・捺印漏れ・記入漏れ</strong>がないか必ず確認すること。
+                </div>
+              </div>
+
+              <!-- 更新契約 -->
+              <div id="kousintab" class="shorui-content" style="display:none;">
+                <p style="margin:0 0 12px; font-weight:700; color:#16a34a;">🔄 更新契約（居住用）の書類整理</p>
+                <p style="margin:0 0 14px; font-size:.9rem; color:#667085;">渡す相手によって綴じ順が異なります。3種類を確認してください。</p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+
+                  <!-- 貸主用 -->
+                  <div style="flex:1; min-width:200px; background:#eefcf3; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#16a34a; font-size:.95rem;">🏠 貸主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>精算書</strong></li>
+                      <li><strong>契約書</strong></li>
+                    </ol>
+                  </div>
+
+                  <!-- 借主用 -->
+                  <div style="flex:1; min-width:200px; background:#eef4ff; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#2f6fed; font-size:.95rem;">👤 借主用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>表紙</strong></li>
+                      <li><strong>契約書</strong></li>
+                    </ol>
+                  </div>
+
+                  <!-- TJ保存用 -->
+                  <div style="flex:1; min-width:200px; background:#fff1f1; border-radius:10px; padding:14px;">
+                    <div style="font-weight:800; margin-bottom:10px; color:#dc2626; font-size:.95rem;">🗂 TJ保存用</div>
+                    <ol style="margin:0; padding-left:18px; line-height:2.1; font-size:.9rem;">
+                      <li><strong>契約書写し</strong><br><span style="font-size:.8rem; color:#667085;">（表裏）</span></li>
+                    </ol>
+                  </div>
+
+                </div>
+
+                <div style="margin-top:14px; background:#fff7e8; border-radius:8px; padding:12px; font-size:.88rem; border-left:4px solid #f59e0b;">
+                  <strong>⚠ ポイント</strong><br>
+                  更新ファイルは物件ごとに管理されています。<strong>該当物件のファイルを棚から出して</strong>綴じること。ファイルが見つからない場合は担当者に確認すること。
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="faq-zone">
+          <h2>❓ よくある質問</h2>
+
+          <div class="faq-item">
+            <button class="faq-q">空室確認はどこを見る？ <span class="step-arrow">▶</span></button>
+            <div class="faq-a">楽々賃貸で物件名・号室を検索し、左下の状況欄で「現空」「空き予定」「契約」などを確認します。必要なら楽々賃貸マニュアルを開きます。</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">駐車場の初期費用は？ <span class="step-arrow">▶</span></button>
+            <div class="faq-a">基本は約3か月分です。敷金1か月、賃料1か月、仲介手数料1.1か月が目安です。</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">更新料はいくら？ <span class="step-arrow">▶</span></button>
+            <div class="faq-a">
+              駐車場は1年毎の更新で、更新手数料は新賃料の0.5か月＋税です。<br>居宅は物件により異なりますが、約6か月分です。敷金１か月、礼金１か月、賃料1か月、家賃保証会社１か月、仲介手数料1.1か月と火災保険２万前後が目安です。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">解約したいと言われたら？ <span class="step-arrow">▶</span></button>
+            <div class="faq-a">まず物件名・部屋番号（または駐車場名・区画番号）を確認し、居室・駐車場ならホームページの解約フォームへ誘導します。</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">わからない電話はどうする？ <span class="step-arrow">▶</span></button>
+            <div class="faq-a">無理に答えず、保留にして「確認して折り返します」でOKです。慣れるまでは正確さ優先で大丈夫です。</div>
+          </div>
+        </div>
+
+        <div class="footer">TJ 不動産部ロードマップ / 業務ナビゲーション</div>
+      </div>
+
+    </div>
+
+    <div id="koji" class="tab-content">
+      <div class="panel">
+        <h2>工事部（月曜・火曜）</h2>
+        <p class="muted">工事部は全体フローを上にまとめ、よく使う小口工事・空き家工事マニュアルへすぐ飛べるようにしています。</p>
+      </div>
+
+      <div class="quick-card" style="margin-bottom:16px;">
+        <div class="quick-title">🔧 工事部クイック入口</div>
+        <div class="quick-buttons">
+          <button class="jump-btn" data-open-step="koji-flow">全体フローを見る</button>
+          <button class="jump-btn" data-open-step="koji-order">受注</button>
+          <button class="jump-btn" data-open-step="koji-arrange">下請発注／自社施工</button>
+          <button class="jump-btn" data-open-step="koji-docs">書類整理</button>
+        </div>
+      </div>
+
+      <div class="tip" id="koji-flow">
+        <strong>【JKKの業務フロー】</strong><br>
+        ①【受注】 → ②【下請発注】or【自社施工】 → ③【施工】 → ④【書類整理】 → ⑤【書類提出】<br>
+        ※ 亀戸窓口センターとの連絡は【JKKWEB、電話、メール（jkk@tk-const.co.jp）、FAX】
+      </div>
+
+      <div class="step" id="koji-order" data-tone="green">
+        <button class="step-header">
+          <div class="step-title-wrap">
+            <span class="step-name">① 受注</span>
+            <span class="step-badge">最初に確認</span>
+          </div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <li>出勤したら現場予定表を確認する</li>
+              <li>使用する車・道具を確認する</li>
+              <li>必要な資材が揃っているか確認する</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="koji-arrange" data-tone="orange">
+        <button class="step-header">
+          <div class="step-title-wrap">
+            <span class="step-name">② 下請発注 or 自社施工</span>
+            <span class="step-badge">工事項目別</span>
+          </div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <div class="manual-links">
+              <a href="koguchii_manual.html" target="_blank" class="manual-btn">小口工事マニュアル</a>
+              <a href="akiya_manual.html" target="_blank" class="manual-btn">空き家工事マニュアル</a>
+            </div>
+            <p class="note">※ 工事の種類ごとに、上の個別マニュアルで確認する形にしています。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-tone="blue">
+        <button class="step-header">
+          <div class="step-title-wrap">
+            <span class="step-name">③ 施工</span>
+            <span class="step-badge">現地作業</span>
+          </div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <li>現場調査を行う</li>
+              <li>必要に応じて写真・寸法・現状を記録する</li>
+              <li>施工後は漏れがないか確認する</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="koji-docs" data-tone="purple">
+        <button class="step-header">
+          <div class="step-title-wrap">
+            <span class="step-name">④ 書類整理・⑤ 書類提出</span>
+            <span class="step-badge">最後の仕上げ</span>
+          </div>
+          <span class="step-arrow">▶</span>
+        </button>
+        <div class="step-body">
+          <div class="step-body-inner">
+            <ul>
+              <li>完了後の必要書類を整理する</li>
+              <li>提出先・提出方法（JKKWEB、メール、FAX等）を確認する</li>
+              <li>提出漏れがないか最終確認する</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel" style="margin-top:16px;">
+        <h2>📘 次のレベルへ</h2>
+        <div class="manual-links">
+          <a href="tj_chukyu_manual.html" target="_blank" class="manual-btn">中級編を開く</a>
+          <a href="tj_jokyu_manual.html" target="_blank" class="manual-btn">上級編を開く</a>
+        </div>
+      </div>
+
+      <div class="footer">TJ 工事部ロードマップ / 進化版ナビゲーション</div>
+    </div>
+  </div>
+
+  <script>
+    function openStepById(id) {
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      const tabContent = target.closest('.tab-content');
+      if (tabContent) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        tabContent.classList.add('active');
+        const relatedButton = document.querySelector('.tab-button[data-target="' + tabContent.id + '"]');
+        if (relatedButton) relatedButton.classList.add('active');
+      }
+
+      if (target.classList.contains('step')) {
+        openStep(target);
+      }
+      if (target.classList.contains('panel')) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+      }
+    }
+
+    function openStep(step) {
+      const body = step.querySelector('.step-body');
+      if (!body) return;
+      step.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+
+    function closeStep(step) {
+      const body = step.querySelector('.step-body');
+      if (!body) return;
+      step.classList.remove('open');
+      body.style.maxHeight = 0;
+    }
+
+    document.querySelectorAll('.tab-button[data-target]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.target;
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        document.querySelectorAll('.tab-button[data-target]').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('.step').forEach(step => {
+      const header = step.querySelector('.step-header');
+      const body = step.querySelector('.step-body');
+      if (!header || !body) return;
+
+      header.addEventListener('click', () => {
+        const isOpen = step.classList.contains('open');
+        if (isOpen) {
+          closeStep(step);
+        } else {
+          openStep(step);
+        }
+      });
+
+      if (step.classList.contains('open')) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+
+    document.querySelectorAll('.branch-node').forEach(node => {
+      const header = node.querySelector('.branch-header');
+      const children = node.querySelector('.branch-children');
+      if (!header || !children) return;
+      children.style.maxHeight = 0;
+      header.addEventListener('click', () => {
+        const isOpen = node.classList.contains('open');
+        if (isOpen) {
+          node.classList.remove('open');
+          children.style.maxHeight = 0;
+        } else {
+          node.classList.add('open');
+          children.style.maxHeight = children.scrollHeight + 'px';
+        }
+      });
+    });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      if (!q || !a) return;
+      q.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        if (isOpen) {
+          item.classList.remove('open');
+          a.style.maxHeight = 0;
+        } else {
+          item.classList.add('open');
+          a.style.maxHeight = a.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // 書類整理タブ切り替え
+    document.querySelectorAll('.shorui-tab-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const target = this.dataset.shorui;
+        document.querySelectorAll('.shorui-content').forEach(c => c.style.display = 'none');
+        document.getElementById(target).style.display = 'block';
+        document.querySelectorAll('.shorui-tab-btn').forEach(b => {
+          b.style.background = '#fff';
+          b.style.color = '#243042';
+          b.style.borderColor = '#9aa4b2';
+        });
+        this.style.background = '#2f6fed';
+        this.style.color = '#fff';
+        this.style.borderColor = '#2f6fed';
+      });
+    });
+
+    document.querySelectorAll('[data-open-step]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openStepById(btn.dataset.openStep);
+      });
+    });
+  </script>
+
+  <script>
+    // 成長ロード チェック状態の保存・復元
+    const checks = document.querySelectorAll('.level-check');
+    checks.forEach(cb => {
+      const id = cb.dataset.levelId;
+      const card = cb.closest('.level-card');
+      // 復元
+      if (localStorage.getItem('level-' + id) === '1') {
+        cb.checked = true;
+        card.classList.add('cleared');
+      }
+      // 変更時
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          localStorage.setItem('level-' + id, '1');
+          card.classList.add('cleared');
+        } else {
+          localStorage.removeItem('level-' + id);
+          card.classList.remove('cleared');
+        }
+      });
+    });
+  </script>
+
+  <a href="#" style="
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    background:#2f6fed;
+    color:#fff;
+    font-weight:900;
+    font-size:1rem;
+    padding:12px 18px;
+    border-radius:50px;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(15,23,42,.25);
+    z-index:9999;
+  ">▲ トップへ戻る</a>
+</body>
+
+</html>

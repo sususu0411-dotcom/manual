@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>業界用語集 | TJ 不動産部</title>
+  <style>
+    :root {
+      --bg: #f2f4f7;
+      --card: #ffffff;
+      --text: #243042;
+      --muted: #667085;
+      --line: #d0d5dd;
+      --blue: #2f6fed;
+      --blue-soft: #eef4ff;
+      --green: #16a34a;
+      --green-soft: #eefcf3;
+      --orange: #f59e0b;
+      --orange-soft: #fff7e8;
+      --red: #dc2626;
+      --purple: #7c3aed;
+      --purple-soft: #f5f0ff;
+      --shadow: 0 8px 24px rgba(15, 23, 42, .06);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 14px 60px;
+    }
+
+    /* ヒーロー */
+    .hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 20px 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .company-logo {
+      width: 200px;
+      max-width: 70%;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.7rem;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* 検索バー */
+    .search-wrap {
+      margin-bottom: 20px;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: 2px solid #b8c2d1;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color .2s;
+      font-family: inherit;
+    }
+
+    #search-input:focus {
+      border-color: var(--blue);
+    }
+
+    #no-result {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      padding: 24px;
+      font-size: .95rem;
+    }
+
+    /* カテゴリラベル */
+    .category-label {
+      font-size: 1.05rem;
+      font-weight: 900;
+      margin: 24px 0 10px;
+      padding-left: 6px;
+      border-left: 6px solid var(--blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .category-label.green {
+      border-color: var(--green);
+    }
+
+    .category-label.orange {
+      border-color: var(--orange);
+    }
+
+    .category-label.purple {
+      border-color: var(--purple);
+    }
+
+    /* 用語カード */
+    .yougo-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .yougo-card {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--blue);
+      padding: 14px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: baseline;
+    }
+
+    .yougo-card.green {
+      border-color: var(--green);
+    }
+
+    .yougo-card.orange {
+      border-color: var(--orange);
+    }
+
+    .yougo-card.purple {
+      border-color: var(--purple);
+    }
+
+    .yougo-term {
+      font-weight: 900;
+      font-size: 1rem;
+      white-space: nowrap;
+      min-width: 130px;
+    }
+
+    .yougo-read {
+      font-size: .8rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .yougo-desc {
+      font-size: .93rem;
+      color: #344054;
+      flex: 1 1 200px;
+    }
+
+    /* 戻るボタン */
+    .back-wrap {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 22px;
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      background: #f0f5ff;
+      color: #103a8a;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: .95rem;
+      transition: .18s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.35rem;
+      }
+
+      .yougo-term {
+        min-width: 100px;
+        font-size: .95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- ヒーロー -->
+    <div class="hero">
+      <img src="../images(all)/TJ_logo/tj.jpg" alt="タキザワ住販株式会社" class="company-logo" />
+      <h1>📖 業界用語集</h1>
+      <p class="hero-sub">不動産業務でよく出てくる言葉をまとめました。わからない用語はここで確認してください。</p>
+    </div>
+
+    <!-- 検索 -->
+    <div class="search-wrap">
+      <input type="text" id="search-input" placeholder="🔍 用語を検索...（例：敷金、レインズ、RC造）" />
+    </div>
+
+    <div id="no-result">該当する用語が見つかりませんでした。</div>
+
+    <!-- ① 費用・お金 -->
+    <div class="category-label" data-category="費用・お金に関する用語">💰 費用・お金に関する用語</div>
+    <div class="yougo-list">
+      <div class="yougo-card" data-term="敷金 しききん">
+        <span class="yougo-term">敷金<span class="yougo-read">（しききん）</span></span>
+        <span class="yougo-desc">退去時の修繕費用に充てる預り金。原状回復後に余りがあれば借主へ返還される。</span>
+      </div>
+      <div class="yougo-card" data-term="礼金 れいきん">
+        <span class="yougo-term">礼金<span class="yougo-read">（れいきん）</span></span>
+        <span class="yougo-desc">入居時に大家へ支払うお礼金。退去時に返還されない。</span>
+      </div>
+      <div class="yougo-card" data-term="前家賃 まえやちん">
+        <span class="yougo-term">前家賃<span class="yougo-read">（まえやちん）</span></span>
+        <span class="yougo-desc">入居前に翌月分の家賃を前払いすること。</span>
+      </div>
+      <div class="yougo-card" data-term="日割り ひわり">
+        <span class="yougo-term">日割り<span class="yougo-read">（ひわり）</span></span>
+        <span class="yougo-desc">月の途中から入居する場合に、日数で按分した家賃のこと。</span>
+      </div>
+      <div class="yougo-card" data-term="月割り つきわり">
+        <span class="yougo-term">月割り<span class="yougo-read">（つきわり）</span></span>
+        <span class="yougo-desc">月単位で費用を計算すること。</span>
+      </div>
+      <div class="yougo-card" data-term="仲介手数料 ちゅうかいてすうりょう">
+        <span class="yougo-term">仲介手数料</span>
+        <span class="yougo-desc">賃貸借契約の仲介に対する報酬。原則として賃料の1か月分＋税。</span>
+      </div>
+      <div class="yougo-card" data-term="管理費 共益費 かんりひ きょうえきひ">
+        <span class="yougo-term">管理費・共益費</span>
+        <span class="yougo-desc">建物の共用部分の維持管理にかかる費用。毎月家賃と一緒に支払う。</span>
+      </div>
+      <div class="yougo-card" data-term="更新料 こうしんりょう">
+        <span class="yougo-term">更新料<span class="yougo-read">（こうしんりょう）</span></span>
+        <span class="yougo-desc">契約更新時に支払う費用。駐車場は新賃料の0.5か月＋税が目安。</span>
+      </div>
+      <div class="yougo-card" data-term="保証委託料 ほしょういたくりょう">
+        <span class="yougo-term">保証委託料</span>
+        <span class="yougo-desc">家賃保証会社を利用する際の初回費用。入居時に1回払いが多い。</span>
+      </div>
+      <div class="yougo-card" data-term="賃料発生日 ちんりょうはっせいび チン発 賃料開始">
+        <span class="yougo-term">賃料発生日<span class="yougo-read">（ちんりょうはっせいび）</span></span>
+        <span class="yougo-desc">借主が実際に家賃を支払い始める日のこと。鍵の引渡し日や入居日と一致することが多いが、フリーレント期間がある場合はずれる。</span>
+      </div>
+      <div class="yougo-card" data-term="チン発 ちんはつ 賃料発生日 賃発">
+        <span class="yougo-term">チン発<span class="yougo-read">（ちんはつ）</span></span>
+        <span class="yougo-desc">「賃料発生日」の略称。賃（チン）＋発生（発）を縮めた業界用語。「チン発はいつですか？」のように使う。</span>
+      </div>
+      <div class="yougo-card" data-term="賃発 ちんはつ 賃料発生日 チン発">
+        <span class="yougo-term">賃発<span class="yougo-read">（ちんはつ）</span></span>
+        <span class="yougo-desc">「賃料発生日」の略称。チン発と同じ意味で使われる。</span>
+      </div>
+    </div>
+
+    <!-- ② 契約 -->
+    <div class="category-label green" data-category="契約に関する用語">📝 契約に関する用語</div>
+    <div class="yougo-list">
+      <div class="yougo-card green" data-term="賃貸借契約 ちんたいしゃくけいやく">
+        <span class="yougo-term">賃貸借契約</span>
+        <span class="yougo-desc">貸主（大家）と借主が結ぶ賃貸の契約。</span>
+      </div>
+      <div class="yougo-card green" data-term="普通借家契約 ふつうしゃっかけいやく">
+        <span class="yougo-term">普通借家契約</span>
+        <span class="yougo-desc">一般的な賃貸契約。契約期間終了後も借主が希望すれば更新できる。</span>
+      </div>
+      <div class="yougo-card green" data-term="定期借家契約 ていきしゃっかけいやく">
+        <span class="yougo-term">定期借家契約</span>
+        <span class="yougo-desc">期間が満了すると原則更新なく終了する契約。大家側に有利。</span>
+      </div>
+      <div class="yougo-card green" data-term="重要事項説明 じゅうようじこうせつめい 宅建士">
+        <span class="yougo-term">重要事項説明</span>
+        <span class="yougo-desc">契約前に宅建士が借主へ物件・契約内容を説明する法律上の義務。省略できない。</span>
+      </div>
+      <div class="yougo-card green" data-term="媒介契約 ばいかいけいやく">
+        <span class="yougo-term">媒介契約<span class="yougo-read">（ばいかいけいやく）</span></span>
+        <span class="yougo-desc">売買・賃貸の仲介を不動産会社に依頼する契約。</span>
+      </div>
+      <div class="yougo-card green" data-term="専任媒介 せんにんばいかい">
+        <span class="yougo-term">専任媒介</span>
+        <span class="yougo-desc">1社だけに仲介を依頼する契約。自分で直接買主・借主を見つけることはできる。</span>
+      </div>
+      <div class="yougo-card green" data-term="専属専任媒介 せんぞくせんにんばいかい">
+        <span class="yougo-term">専属専任媒介</span>
+        <span class="yougo-desc">1社だけに仲介を依頼し、自分での直接取引も禁止される契約。</span>
+      </div>
+      <div class="yougo-card green" data-term="一般媒介 いっぱんばいかい">
+        <span class="yougo-term">一般媒介</span>
+        <span class="yougo-desc">複数の不動産会社に同時に仲介を依頼できる契約。</span>
+      </div>
+      <div class="yougo-card green" data-term="入居審査 にゅうきょしんさ 保証会社">
+        <span class="yougo-term">入居審査</span>
+        <span class="yougo-desc">大家や管理会社・保証会社が入居希望者の属性・収入等を確認する審査。通過しないと契約できない。</span>
+      </div>
+    </div>
+
+    <!-- ③ 手続き・業務 -->
+    <div class="category-label orange" data-category="手続き・業務に関する用語">🔧 手続き・業務に関する用語</div>
+    <div class="yougo-list">
+      <div class="yougo-card orange" data-term="原状回復 げんじょうかいふく">
+        <span class="yougo-term">原状回復<span class="yougo-read">（げんじょうかいふく）</span></span>
+        <span class="yougo-desc">退去時に入居前の状態に戻すこと。通常の使用による損耗は借主負担にならない。</span>
+      </div>
+      <div class="yougo-card orange" data-term="退去立会 たいきょたちあい">
+        <span class="yougo-term">退去立会<span class="yougo-read">（たいきょたちあい）</span></span>
+        <span class="yougo-desc">退去時に物件の状態を貸主・借主が立ち会って確認すること。</span>
+      </div>
+      <div class="yougo-card orange" data-term="解約通知 かいやくつうち">
+        <span class="yougo-term">解約通知</span>
+        <span class="yougo-desc">借主が退去の意思を書面やフォームで通知すること。通常1〜2か月前が必要。</span>
+      </div>
+      <div class="yougo-card orange" data-term="残置物 ざんちぶつ">
+        <span class="yougo-term">残置物<span class="yougo-read">（ざんちぶつ）</span></span>
+        <span class="yougo-desc">退去後に部屋に残された借主の荷物や家具のこと。</span>
+      </div>
+      <div class="yougo-card orange" data-term="謄本 とうほん 登記事項証明書">
+        <span class="yougo-term">謄本<span class="yougo-read">（とうほん）</span></span>
+        <span class="yougo-desc">登記事項証明書のこと。法人契約時などに提出を求める書類。</span>
+      </div>
+      <div class="yougo-card orange" data-term="レインズ REINS 物件情報">
+        <span class="yougo-term">レインズ（REINS）</span>
+        <span class="yougo-desc">不動産流通標準情報システム。物件情報を不動産業者間で共有するネットワーク。</span>
+      </div>
+      <div class="yougo-card orange" data-term="イタンジ ITANDI 申込 更新 解約 電子署名">
+        <span class="yougo-term">イタンジ（ITANDI）</span>
+        <span class="yougo-desc">賃貸業務の電子化プラットフォーム。申込受付・更新・解約・電子署名などに使用。</span>
+      </div>
+      <div class="yougo-card orange" data-term="三為 さんため 中間省略登記 ちゅうかんしょうりゃくとうき 売買 登記">
+        <span class="yougo-term">三為 / 中間省略登記<span class="yougo-read">（さんため／ちゅうかんしょうりゃくとうき）</span></span>
+        <span class="yougo-desc">売買でA→B→Cと所有権が移る際に、中間のBの登記を省略してAからCへ直接登記すること。登録免許税などの費用を節約できる。「三タ目」は現場での略称。</span>
+      </div>
+      <div class="yougo-card orange" data-term="楽々賃貸 空室確認 契約管理">
+        <span class="yougo-term">楽々賃貸</span>
+        <span class="yougo-desc">当社で使用している賃貸管理システム。空室確認・契約管理・清算書作成などに使用。</span>
+      </div>
+      <div class="yougo-card orange" data-term="客付け きゃくつけ テナント側 借主側">
+        <span class="yougo-term">客付け<span class="yougo-read">（きゃくつけ）</span></span>
+        <span class="yougo-desc">借主（入居希望者）側を担当する不動産会社・担当者のこと。借主から仲介手数料をもらう側。</span>
+      </div>
+      <div class="yougo-card orange" data-term="元付け もとつけ 貸主側 オーナー側 管理会社">
+        <span class="yougo-term">元付け<span class="yougo-read">（もとつけ）</span></span>
+        <span class="yougo-desc">物件を管理・預かっている側（貸主・オーナー側）を担当する不動産会社のこと。物件情報を持っている側。</span>
+      </div>
+      <div class="yougo-card orange" data-term="分かれ わかれ 手数料 折半 分割">
+        <span class="yougo-term">分かれ<span class="yougo-read">（わかれ）</span></span>
+        <span
+          class="yougo-desc">分かれとは、不動産売買の媒介報酬（仲介手数料）の配分を表す不動産業界の用語です。報酬の配分は、売却を依頼された元付け業者が、買い手を探す客付け業者へ示すケースが一般的です。その際、「分かれ」とあれば、元付け業者は売主から、客付け業者は買主から、それぞれ媒介報酬を受領することになります。</span>
+      </div>
+      <div class="yougo-card orange" data-term="片手 かたて 手数料 仲介">
+        <span class="yougo-term">片手<span class="yougo-read">（かたて）</span></span>
+        <span class="yougo-desc">仲介手数料を片側（借主か貸主のどちらか一方）からだけ受け取ること。分かれの場合はお互い片手になる。</span>
+      </div>
+      <div class="yougo-card orange" data-term="両手 りょうて 手数料 仲介 独占">
+        <span class="yougo-term">両手<span class="yougo-read">（りょうて）</span></span>
+        <span class="yougo-desc">1社が客付けと元付けを両方担当し、貸主・借主の両方から仲介手数料を受け取ること。合計1か月分＋税が上限。</span>
+      </div>
+    </div>
+
+    <!-- ④ 物件・建物 -->
+    <div class="category-label purple" data-category="物件・建物に関する用語">🏠 物件・建物に関する用語</div>
+    <div class="yougo-list">
+      <div class="yougo-card purple" data-term="間取り まどり 1K 1LDK 2DK">
+        <span class="yougo-term">間取り<span class="yougo-read">（まどり）</span></span>
+        <span class="yougo-desc">部屋の配置・構成。1K・1LDK・2DKなど部屋数と種類で表す。K=キッチン、D=ダイニング、L=リビング。</span>
+      </div>
+      <div class="yougo-card purple" data-term="専有面積 せんゆうめんせき 平米">
+        <span class="yougo-term">専有面積</span>
+        <span class="yougo-desc">借主が使える部屋の面積（㎡）。共用廊下・エントランスは含まない。</span>
+      </div>
+      <div class="yougo-card purple" data-term="坪 つぼ 面積">
+        <span class="yougo-term">坪<span class="yougo-read">（つぼ）</span></span>
+        <span class="yougo-desc">面積の単位。1坪≒3.3㎡。不動産の現場では今も使われることが多い。</span>
+      </div>
+      <div class="yougo-card purple" data-term="RC造 鉄筋コンクリート">
+        <span class="yougo-term">RC造</span>
+        <span class="yougo-desc">鉄筋コンクリート造。耐久性・防音性・耐震性が高い。マンションに多い。</span>
+      </div>
+      <div class="yougo-card purple" data-term="鉄骨造 S造 てっこつぞう">
+        <span class="yougo-term">鉄骨造（S造）</span>
+        <span class="yougo-desc">鉄骨を骨組みに使った構造。RC造より軽量。アパートや低層ビルに多い。</span>
+      </div>
+      <div class="yougo-card purple" data-term="木造 W造 もくぞう">
+        <span class="yougo-term">木造（W造）</span>
+        <span class="yougo-desc">木材を骨組みに使った構造。通気性が良いが防音性は低め。アパートに多い。</span>
+      </div>
+      <div class="yougo-card purple" data-term="築年数 ちくねんすう">
+        <span class="yougo-term">築年数<span class="yougo-read">（ちくねんすう）</span></span>
+        <span class="yougo-desc">建物が建てられてからの年数。古いほど家賃が安い傾向にある。</span>
+      </div>
+      <div class="yougo-card purple" data-term="角部屋 かどへや">
+        <span class="yougo-term">角部屋<span class="yougo-read">（かどへや）</span></span>
+        <span class="yougo-desc">建物の角にある部屋。窓が多く採光・通風に優れる。人気が高い。</span>
+      </div>
+      <div class="yougo-card purple" data-term="現空 げんくう 空室">
+        <span class="yougo-term">現空<span class="yougo-read">（げんくう）</span></span>
+        <span class="yougo-desc">現在すぐ入居可能な空室のこと。楽々賃貸の状況欄に表示される。</span>
+      </div>
+      <div class="yougo-card purple" data-term="空き予定 あきよてい">
+        <span class="yougo-term">空き予定</span>
+        <span class="yougo-desc">退去予定があり、近日中に空く見込みの部屋。楽々賃貸の状況欄に表示される。</span>
+      </div>
+      <div class="yougo-card purple" data-term="事業用物件 じぎょうようぶっけん 店舗 事務所 工場">
+        <span class="yougo-term">事業用物件</span>
+        <span class="yougo-desc">事務所・店舗・工場など、居住以外の目的で使う物件。契約内容が居住用と異なる。</span>
+      </div>
+    </div>
+
+    <div class="back-wrap">
+      <a href="tj_shokyu_fixed.html" class="back-btn">◀ 初級編マニュアルに戻る</a>
+    </div>
+
+    <div class="footer">TJ 不動産部 / 業界用語集</div>
+  </div>
+
+  <script>
+    const input = document.getElementById('search-input');
+    const noResult = document.getElementById('no-result');
+    const cards = document.querySelectorAll('.yougo-card');
+    const labels = document.querySelectorAll('.category-label');
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const term = (card.dataset.term || '').toLowerCase();
+        const text = card.textContent.toLowerCase();
+        const match = !q || term.includes(q) || text.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) visibleCount++;
+      });
+
+      // カテゴリラベルの表示制御
+      labels.forEach(label => {
+        const nextList = label.nextElementSibling;
+        if (!nextList) return;
+        const anyVisible = [...nextList.querySelectorAll('.yougo-card')].some(c => c.style.display !== 'none');
+        label.style.display = anyVisible ? '' : 'none';
+      });
+
+      noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+  </script>
+
+  <a href="#"
+    style="position:fixed;bottom:24px;right:24px;background:#2f6fed;color:#fff;font-weight:900;font-size:1rem;padding:12px 18px;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(15,23,42,.25);z-index:9999;">▲
+    トップへ</a>
+</body>
+
+</html>
